@@ -29,9 +29,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-test {
-	useJUnitPlatform()
-}
 
 def webappDir = "$projectDir/src/main/frontend"
 
@@ -70,4 +67,8 @@ task installReact(type: Exec) {
 		commandLine "npm", "audit", "fix"
 		commandLine 'npm', 'install'
 	}
+}
+
+test {
+	useJUnitPlatform()
 }
