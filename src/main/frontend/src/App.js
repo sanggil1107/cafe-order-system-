@@ -1,12 +1,12 @@
 import './App.css';
 import React from 'react';
-import Review from './components/Review';
+import Main from './components/Main';
 
 const App = () => {
 
   return (
     <div>
-      <Review></Review>
+      <Main></Main>
     </div>
   );
   // const [message, setMessage] = useState("");
