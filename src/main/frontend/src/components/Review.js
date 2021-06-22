@@ -3,6 +3,12 @@ import ReviewDetail from './ReviewDetail';
 import './review.css'
 
 const Review = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
+        alert('dd');
+        <ReviewDetail></ReviewDetail>
+    }
+
     return (
         <div class="container">
             <div class="container">
@@ -38,7 +44,8 @@ const Review = () => {
                             <td>boardIdx</td>
                             <td class="title">
                                 {/* <ReviewDetail>title</ReviewDetail> */}
-                                <p>title</p>
+                                <a href="/" onClick={handleClick}>title</a>
+                               
                             </td>
                             <td>hitCnt</td>
                             <td>time</td>
