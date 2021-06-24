@@ -1,7 +1,8 @@
 import React from 'react';
 import './review.css'
 
-const ReviewDetail = () => {
+const ReviewDetail = (props) => {
+
     return (
         <div class="container">
             <h2>게시글 상세 화면</h2>
@@ -43,12 +44,13 @@ const ReviewDetail = () => {
                 <input type="hidden" name="boardIdx" />
                 <input type="hidden" id="method" name="_method" />
             </form>
-            <div class="file_list" >
+            {/* <div class="file_list" >
               
-            </div>
-            <input type="button" id="list" value="목록으로" />
-            <input type="button" id="edit" value="수정하기" />
-            <input type="button" id="delete" value="삭제하기" />
+            </div> */}
+            <br></br>
+            <button id="list" onClick={() => props.history.goBack()}>목록으로</button>
+            <button id="edit">수정하기</button>
+            <button id="delete">삭제하기</button>
         </div>
     );
 }

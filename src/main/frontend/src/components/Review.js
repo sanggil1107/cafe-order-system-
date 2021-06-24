@@ -1,5 +1,7 @@
 import React from 'react';
 import ReviewDetail from './ReviewDetail';
+import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './review.css'
 
 const Review = () => {
@@ -43,9 +45,7 @@ const Review = () => {
                         <tr>
                             <td>boardIdx</td>
                             <td class="title">
-                                {/* <ReviewDetail>title</ReviewDetail> */}
-                                <a href="/" onClick={handleClick}>title</a>
-                               
+                                <Link to="/insert">title</Link>
                             </td>
                             <td>hitCnt</td>
                             <td>time</td>
@@ -53,6 +53,15 @@ const Review = () => {
                     </tbody>
                 </table>
                 <a href="/board/Write" class="btn">글 쓰기</a>
+                <Link to="/write">
+                    <button>글 쓰기</button>
+                </Link>
+                {/* <Router>
+                    <Switch>
+                        <Route exact path="/" component={Review}></Route>
+                        <Route exact path="/insert" component={ReviewDetail}></Route>
+                    </Switch>
+                </Router> */}
             </div>
         </div>
     );
