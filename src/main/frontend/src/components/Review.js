@@ -1,15 +1,18 @@
 import React from 'react';
-import ReviewDetail from './ReviewDetail';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import ReviewService from '../service/ReviewService';
 import './review.css'
 
 const Review = () => {
-    const handleClick = (e) => {
-        e.preventDefault();
-        alert('dd');
-        <ReviewDetail></ReviewDetail>
-    }
+
+    const [reviews, setReviwes] = useState([]);
+
+    useEffect(() => {
+        const data = ReviewService.getReviews();
+        console.log(data.data);
+        setReviwes(data.data);
+    }, [])
 
     return (
         <div class="container">
@@ -31,37 +34,22 @@ const Review = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
-                            <td th:text="${list.boardIdx}"></td>
-                            <td class="title">
-                                <a href="/board/Detail?boardIdx=" th:attrappend="href=${list.boardIdx}" th:text="${list.title}"></a>
-                            </td>
-                            <td th:text="${list.hitCnt}"></td>
-                            <td th:text="${#temporals.format(list.createTime, 'yyyy-MM-dd HH:mm::ss')}"></td>
-                        </tr>
-                        <tr th:unless="${#lists.size(list)} > 0">
-                            <td colspan="4">조회된 결과가 없습니다.</td>
-                        </tr> */}
-                        <tr>
-                            <td>boardIdx</td>
-                            <td class="title">
-                                <Link to="/insert">title</Link>
-                            </td>
-                            <td>hitCnt</td>
-                            <td>time</td>
-                        </tr>
+                        { reviews && reviews.map((review, i) => (
+                            <tr>
+                                <td>{review.boardIdx}</td>
+                                <td class="title">
+                                    <Link to="/insert">{review.title}</Link>
+                                </td>
+                                <td>hitCnt</td>
+                                <td>time</td>
+                            </tr>
+                        )) }
                     </tbody>
                 </table>
                 <a href="/board/Write" class="btn">글 쓰기</a>
                 <Link to="/write">
                     <button>글 쓰기</button>
                 </Link>
-                {/* <Router>
-                    <Switch>
-                        <Route exact path="/" component={Review}></Route>
-                        <Route exact path="/insert" component={ReviewDetail}></Route>
-                    </Switch>
-                </Router> */}
             </div>
         </div>
     );
