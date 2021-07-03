@@ -19,6 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
     public List<ReviewEntity> selectReviewList() throws Exception {
 
         List<ReviewEntity> reviewEntities = null;
+        reviewRepository.findAll();
         return reviewEntities;
     }
 

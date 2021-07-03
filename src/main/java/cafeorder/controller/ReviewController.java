@@ -1,5 +1,7 @@
 package cafeorder.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cafeorder.entity.ReviewEntity;
 import cafeorder.service.ReviewService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -19,9 +22,8 @@ public class ReviewController {
 
     // 리뷰 목록
     @RequestMapping(value = "/review", method = RequestMethod.GET)
-    public String ReviewList(Model model) throws Exception {
-        reviewService.selectReviewList();
-        return "review";
+    public List<ReviewEntity> ReviewList(Model model) throws Exception {
+        return reviewService.selectReviewList();
     }
 
     // 리뷰 작성 화면
@@ -39,13 +41,12 @@ public class ReviewController {
 
     // 리뷰 상세 화면
     @RequestMapping(value = "/review/{reviewIdx}", method = RequestMethod.GET)
-    public String ReviewDetail(Model model) throws Exception {
-        reviewService.selectReviewDetail();
-        return "reviewdetail";
+    public ReviewEntity ReviewDetail(Model model) throws Exception {
+        return reviewService.selectReviewDetail();
     }
 
     // 리뷰 수정
-    @RequestMapping()
+    @RequestMapping(value = "/review/{reviewIdx}", method = RequestMethod.PUT)
     public String UpdateReview() throws Exception {
         reviewService.saveReview();
         return "redirect:/review";
