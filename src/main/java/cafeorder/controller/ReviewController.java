@@ -34,9 +34,8 @@ public class ReviewController {
 
     // 리뷰 작성
     @RequestMapping(value = "/review/write", method = RequestMethod.POST)
-    public String InsertReview() throws Exception {
-        reviewService.saveReview();
-        return "redirect:/review";
+    public void InsertReview(ReviewEntity reviewEntity) throws Exception {
+        reviewService.saveReview(reviewEntity);
     }
 
     // 리뷰 상세 화면
@@ -47,9 +46,8 @@ public class ReviewController {
 
     // 리뷰 수정
     @RequestMapping(value = "/review/{reviewIdx}", method = RequestMethod.PUT)
-    public String UpdateReview() throws Exception {
-        reviewService.saveReview();
-        return "redirect:/review";
+    public void UpdateReview(ReviewEntity reviewEntity) throws Exception {
+        reviewService.saveReview(reviewEntity);
     }
 
     // 리뷰 삭제

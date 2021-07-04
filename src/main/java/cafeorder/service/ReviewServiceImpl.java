@@ -18,15 +18,14 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewEntity> selectReviewList() throws Exception {
 
-        List<ReviewEntity> reviewEntities = null;
-        reviewRepository.findAll();
-        return reviewEntities;
+        return reviewRepository.findAll();
     }
 
     // 리뷰 작성 or 수정
     @Override
-    public void saveReview() throws Exception {
+    public void saveReview(ReviewEntity reviewEntity) throws Exception {
 
+        reviewRepository.save(reviewEntity);
     }
 
     // 리뷰 상세 화면
@@ -34,6 +33,7 @@ public class ReviewServiceImpl implements ReviewService {
     public ReviewEntity selectReviewDetail() throws Exception {
 
         ReviewEntity reviewEntity = null;
+        //reviewRepository.findById(id)
         return reviewEntity;
     }
 
