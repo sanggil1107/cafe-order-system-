@@ -1,13 +1,17 @@
 package cafeorder.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cafeorder.entity.ReviewEntity;
@@ -34,14 +38,14 @@ public class ReviewController {
 
     // 리뷰 작성
     @RequestMapping(value = "/review/write", method = RequestMethod.POST)
-    public void InsertReview(ReviewEntity reviewEntity) throws Exception {
+    public void InsertReview(@RequestBody ReviewEntity reviewEntity) throws Exception {
         reviewService.saveReview(reviewEntity);
     }
 
     // 리뷰 상세 화면
-    @RequestMapping(value = "/review/{reviewIdx}", method = RequestMethod.GET)
-    public ReviewEntity ReviewDetail(Model model) throws Exception {
-        return reviewService.selectReviewDetail();
+    @RequestMapping(value = "/review/detail", method = RequestMethod.GET)
+    public ReviewEntity ReviewDetail(@RequestParam("reviewId") int reviewId) throws Exception {
+        return reviewService.selectReviewDetail(reviewId);
     }
 
     // 리뷰 수정

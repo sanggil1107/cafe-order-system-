@@ -7,7 +7,7 @@ const ReviewWrite = (props) => {
 
     const [review, setReview] = useState({
         title: '',
-        content: ''
+        contents: ''
     });
 
     const getValue = e => {
@@ -22,7 +22,8 @@ const ReviewWrite = (props) => {
 
     const onSubmit = () => {
         ReviewService.insertReview(review).then(res => {
-            props.history.push("/review");
+            //props.history.push('/');  ??
+            props.history.goBack();
         });
     }
 
@@ -38,7 +39,7 @@ const ReviewWrite = (props) => {
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <textarea name="content" id="content" onChange={getValue}></textarea>
+                                <textarea name="contents" id="contents" onChange={getValue}></textarea>
                             </td>
                         </tr>
                     </tbody>

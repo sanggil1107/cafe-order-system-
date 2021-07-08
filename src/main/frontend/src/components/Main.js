@@ -10,7 +10,7 @@ const Main = () => {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Review}></Route>
-                    <Route exact path="/insert" component={ReviewDetail}></Route>
+                    <Route exact path="/write/:id" component={ReviewDetail}></Route>
                     <Route exact path="/write" component={ReviewWrite}></Route>
                 </Switch>
             </Router>

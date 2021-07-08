@@ -6,12 +6,12 @@ import './review.css'
 
 const Review = () => {
 
-    const [reviews, setReviwes] = useState([]);
+    const [ reviews, setReviwes ] = useState([]);
 
     useEffect(() => {
-        const data = ReviewService.getReviews();
-        console.log(data.data);
-        setReviwes(data.data);
+        ReviewService.getReviewlist().then(res => {
+            setReviwes(res.data);
+        });
     }, [])
 
     return (
@@ -34,19 +34,18 @@ const Review = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { reviews && reviews.map((review, i) => (
+                        { reviews && reviews.slice(0).reverse().map((review, i) => (
                             <tr>
-                                <td>{review.boardIdx}</td>
+                                <td>{review.reviewId}</td>
                                 <td class="title">
-                                    <Link to="/insert">{review.title}</Link>
+                                    <Link to={`/write/${review.reviewId}`}>{review.title}</Link>
                                 </td>
-                                <td>hitCnt</td>
-                                <td>time</td>
+                                <td>{review.cnt}</td>
+                                <td>{review.createTime}</td>
                             </tr>
                         )) }
                     </tbody>
                 </table>
-                <a href="/board/Write" class="btn">글 쓰기</a>
                 <Link to="/write">
                     <button>글 쓰기</button>
                 </Link>

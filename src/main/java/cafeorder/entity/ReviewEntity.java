@@ -28,19 +28,19 @@ public class ReviewEntity {
     @Column(nullable = false)
     private String contents;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int cnt;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String userId;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime createTime;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String deletedYn;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String cafeId;
 
 }

@@ -1,7 +1,19 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import ReviewService from '../service/ReviewService';
 import './review.css'
 
 const ReviewDetail = (props) => {
+
+    const [ review, setReview ] = useState([]);
+
+    useEffect(() => {
+        const Id  = props.match.params.id;
+        ReviewService.getReview(Id).then(res => {
+            console.log(res.data);
+            setReview(res.data);
+        });
+    }, [props.match.params.id])
 
     return (
         <div class="container">
@@ -18,25 +30,25 @@ const ReviewDetail = (props) => {
                     <tbody>
                         <tr>
                             <th scope="row">글 번호</th>
-                            <td></td>
+                            <td>{review.reviewId}</td>
                             <th scope="row">조회수</th>
-                            <td></td>
+                            <td>{review.cnt}</td>
                         </tr>
                         <tr>
                             <th scope="row">작성자</th>
                             <td></td>
                             <th scope="row">작성일</th>
-                            <td></td>
+                            <td>{review.createTime}</td>
                         </tr>
                         <tr>
                             <th scope="row">제목</th>
                             <td colspan="3">
-                                <input type="text" id="title" name="title" />
+                                <input type="text" id="title" name="title" value={review.title}/>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" class="view_text">
-                                <textarea name="contents" id="contents" title="내용" ></textarea>
+                                <textarea name="contents" id="contents" title="내용" value={review.contents}></textarea>
                             </td>
                         </tr>
                     </tbody>
