@@ -6,6 +6,9 @@ import './review.css'
 const ReviewDetail = (props) => {
 
     const [ review, setReview ] = useState([]);
+    const getValue = (e) => {
+        setReview(e.target.value);
+    }
 
     useEffect(() => {
         const Id  = props.match.params.id;
@@ -43,12 +46,12 @@ const ReviewDetail = (props) => {
                         <tr>
                             <th scope="row">제목</th>
                             <td colspan="3">
-                                <input type="text" id="title" name="title" value={review.title}/>
+                                <input type="text" id="title" name="title" value={review.title} onChange={getValue}/>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" class="view_text">
-                                <textarea name="contents" id="contents" title="내용" value={review.contents}></textarea>
+                                <textarea name="contents" id="contents" title="내용" value={review.contents} onChange={getValue}/>
                             </td>
                         </tr>
                     </tbody>
@@ -60,9 +63,9 @@ const ReviewDetail = (props) => {
               
             </div> */}
             <br></br>
-            <button id="list" onClick={() => props.history.goBack()}>목록으로</button>
-            <button id="edit">수정하기</button>
-            <button id="delete">삭제하기</button>
+            <button onClick={() => props.history.goBack()}>목록으로</button>
+            <button>수정하기</button>
+            <button>삭제하기</button>
         </div>
     );
 }

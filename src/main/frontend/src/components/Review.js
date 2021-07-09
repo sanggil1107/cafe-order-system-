@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReviewService from '../service/ReviewService';
+import Paging from './Paging';
 import './review.css'
 
 const Review = () => {
@@ -46,6 +47,7 @@ const Review = () => {
                         )) }
                     </tbody>
                 </table>
+                <Paging/>
                 <Link to="/write">
                     <button>글 쓰기</button>
                 </Link>
