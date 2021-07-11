@@ -5,9 +5,30 @@ import './review.css'
 
 const ReviewDetail = (props) => {
 
-    const [ review, setReview ] = useState([]);
-    const getValue = (e) => {
-        setReview(e.target.value);
+    const [ review, setReview ] = useState({
+        title: '',
+        contents: ''
+    });
+
+    const getValue = e => {
+        const {name, value} = e.target;
+        console.log(review);
+        console.log(e.target.value);
+        setReview({
+            ...review,
+            [name]: value
+        });
+    }
+
+    const onUpdate = () => {
+        ReviewService.updateReview(review).then(res => {
+            console.log(res.data);
+            props.history.push('/');
+        });
+    }
+
+    const onDelete = () => {
+
     }
 
     useEffect(() => {
@@ -64,8 +85,8 @@ const ReviewDetail = (props) => {
             </div> */}
             <br></br>
             <button onClick={() => props.history.goBack()}>목록으로</button>
-            <button>수정하기</button>
-            <button>삭제하기</button>
+            <button onClick={onUpdate}>수정하기</button>
+            <button onClick={onDelete}>삭제하기</button>
         </div>
     );
 }

@@ -49,8 +49,8 @@ public class ReviewController {
     }
 
     // 리뷰 수정
-    @RequestMapping(value = "/review/{reviewIdx}", method = RequestMethod.PUT)
-    public void UpdateReview(ReviewEntity reviewEntity) throws Exception {
+    @RequestMapping(value = "/review/update", method = RequestMethod.PUT)
+    public void UpdateReview(@RequestBody ReviewEntity reviewEntity) throws Exception {
         reviewService.saveReview(reviewEntity);
     }
 

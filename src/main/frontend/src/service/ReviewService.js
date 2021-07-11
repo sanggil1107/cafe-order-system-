@@ -19,6 +19,14 @@ class ReviewService {
         });
         //return axios.get(REVIEW_API_URL + "/detail", reviewId)
     };
+
+    updateReview(review) {
+        return axios.put(REVIEW_API_URL + "/update", review);
+    };
+
+    deleteReview(reviewId) {
+        return axios.delete();
+    };
 }
 
 export default new ReviewService();
