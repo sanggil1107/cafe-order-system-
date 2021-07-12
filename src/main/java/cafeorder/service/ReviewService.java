@@ -10,6 +10,6 @@ public interface ReviewService {
   List<ReviewEntity> selectReviewList() throws Exception;
   void saveReview(ReviewEntity reviewEntity) throws Exception;
   ReviewEntity selectReviewDetail(int reviewId) throws Exception;
-  void deleteReview() throws Exception;
+  void deleteReview(int reviewId) throws Exception;
   
 }

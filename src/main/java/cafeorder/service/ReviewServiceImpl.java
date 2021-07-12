@@ -52,7 +52,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     // 리뷰 삭제
     @Override
-    public void deleteReview() throws Exception {
+    public void deleteReview(int reviewId) throws Exception {
 
     }
 }

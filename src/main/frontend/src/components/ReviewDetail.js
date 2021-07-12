@@ -27,8 +27,11 @@ const ReviewDetail = (props) => {
         });
     }
 
-    const onDelete = () => {
-
+    const onDelete = (Id) => {
+        ReviewService.deleteReview(Id).then(res => {
+            console.log("삭제 성공");
+            props.history.push('/');
+        })
     }
 
     useEffect(() => {
