@@ -54,8 +54,9 @@ public class ReviewController {
 
     // 리뷰 삭제
     @DeleteMapping(value = "/review/delete")
-    public void DeleteReview(@RequestParam("reviewId") int rewviewId) throws Exception {
-        reviewService.deleteReview(rewviewId);
+    public void DeleteReview(@RequestParam("reviewId") int reviewId) throws Exception {
+        System.out.println(reviewId);
+        reviewService.deleteReview(reviewId);
     }
 
 }

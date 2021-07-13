@@ -24,12 +24,15 @@ const ReviewDetail = (props) => {
         ReviewService.updateReview(review).then(res => {
             console.log(res.data);
             props.history.push('/');
+        })
+        .catch(err => {
+            console.log(err);
         });
     }
 
     const onDelete = (Id) => {
         ReviewService.deleteReview(Id).then(res => {
-            console.log("삭제 성공");
+            console.log(res.data);
             props.history.push('/');
         })
     }
@@ -89,7 +92,7 @@ const ReviewDetail = (props) => {
             <br></br>
             <button onClick={() => props.history.goBack()}>목록으로</button>
             <button onClick={onUpdate}>수정하기</button>
-            <button onClick={onDelete}>삭제하기</button>
+            <button onClick={() => {onDelete(props.match.params.id)}}>삭제하기</button>
         </div>
     );
 }

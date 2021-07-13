@@ -33,7 +33,7 @@ class ReviewService {
     deleteReview(reviewId) {
         return axios.delete(REVIEW_API_URL + "/delete", {
             params: {
-                reviewId: reviewId
+                reviewId: reviewId,
             }
         });
     };
