@@ -1,19 +1,8 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ReviewService from '../service/ReviewService';
-import Paging from './Paging';
 import './review.css'
 
-const Review = () => {
-
-    const [ reviews, setReviwes ] = useState([]);
-
-    useEffect(() => {
-        ReviewService.getReviewlist().then(res => {
-            setReviwes(res.data);
-        });
-    }, [])
+const Review = ({reviews}) => {
 
     return (
         <div class="container">
@@ -35,7 +24,7 @@ const Review = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { reviews && reviews.slice(0).reverse().map((review, i) => (
+                        { reviews && reviews.map((review, i) => (
                             <tr>
                                 <td>{review.reviewId}</td>
                                 <td class="title">
@@ -47,7 +36,6 @@ const Review = () => {
                         )) }
                     </tbody>
                 </table>
-                <Paging/>
                 <Link to="/write">
                     <button>글 쓰기</button>
                 </Link>

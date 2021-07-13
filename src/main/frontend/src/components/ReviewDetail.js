@@ -23,7 +23,7 @@ const ReviewDetail = (props) => {
     const onUpdate = () => {
         ReviewService.updateReview(review).then(res => {
             console.log(res.data);
-            props.history.push('/');
+            props.history.goBack();
         })
         .catch(err => {
             console.log(err);
@@ -33,7 +33,7 @@ const ReviewDetail = (props) => {
     const onDelete = (Id) => {
         ReviewService.deleteReview(Id).then(res => {
             console.log(res.data);
-            props.history.push('/');
+            props.history.goBack();
         })
     }
 
