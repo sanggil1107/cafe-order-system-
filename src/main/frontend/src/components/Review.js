@@ -28,7 +28,7 @@ const Review = ({reviews}) => {
                             <tr>
                                 <td>{review.reviewId}</td>
                                 <td class="title">
-                                    <Link to={`/write/${review.reviewId}`}>{review.title}</Link>
+                                    <Link to={`/review/view/${review.reviewId}`}>{review.title}</Link>
                                 </td>
                                 <td>{review.cnt}</td>
                                 <td>{review.createTime}</td>
@@ -36,7 +36,7 @@ const Review = ({reviews}) => {
                         )) }
                     </tbody>
                 </table>
-                <Link to="/write">
+                <Link to="/review/write">
                     <button>글 쓰기</button>
                 </Link>
             </div>

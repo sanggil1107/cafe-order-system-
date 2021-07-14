@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReviewService from '../service/ReviewService';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Paging from './Paging';
 import Review from './Review';
+import ReviewDetail from './ReviewDetail';
+import ReviewWrite from './ReviewWrite';
 
 
 const ReviewMain = () => {
@@ -34,8 +37,17 @@ const ReviewMain = () => {
     
     return (
         <div>
+            
             <Review reviews={currentReview()}></Review>
             <Paging page={currentPage} count={reviews.length} setPage={setCurrentPage}></Paging>
+{/* 
+            <Router>
+                <Switch>
+                    <Route exact path="/review/view/:id" component={ReviewDetail}></Route>
+                    <Route exact path="/review/write" component={ReviewWrite}></Route>
+                </Switch>
+            </Router> */}
+
         </div>
     );
 }
