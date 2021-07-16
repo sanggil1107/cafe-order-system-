@@ -1,10 +1,10 @@
 import React, { useState } from 'react'; // imr
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
-import './MenuBar.css';
+import './NavBar.css';
 import Dropdown from './Dropdown';
 
-const MenuBar = () => {
+const NavBar = () => {
 
     const [ click, setClick ] = useState(false);
     const [ dropdown, setDropdown ] = useState(false);
@@ -38,7 +38,7 @@ const MenuBar = () => {
         <>
             <nav className='navbar'>
                 <Link to='/' className='navbar-logo'>
-                    EPIC <i class='fab fa-firstdraft'></i>
+                    CafeOrder <i class='fab fa-firstdraft'></i>
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fas fa-times' : 'fas fa-bars'}></i>
@@ -72,4 +72,4 @@ const MenuBar = () => {
     );
 }
 
-export default MenuBar;
+export default NavBar;

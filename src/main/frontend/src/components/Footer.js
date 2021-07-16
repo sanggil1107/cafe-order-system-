@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Order = () => {
+const Footer = () => {
     return (
         <div>
-            <h1>ddd</h1>
+
         </div>
     );
 }
 
-export default Order;
+export default Footer;

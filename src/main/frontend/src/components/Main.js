@@ -3,13 +3,13 @@ import ReviewDetail from './ReviewDetail';
 import ReviewWrite from './ReviewWrite';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReviewMain from './ReviewMain';
-import MenuBar from './MenuBar';
+import NavBar from './NavBar';
 
 const Main = () => {
     return (
         <div>
             <Router>
-            <MenuBar></MenuBar>
+            <NavBar></NavBar>
                 <Switch>
                     <Route exact path="/review" component={ReviewMain}></Route>
                     <Route exact path="/review/view/:id" component={ReviewDetail}></Route>

@@ -18,5 +18,15 @@ export const MenuItems = [
         title: 'Development',
         path: '/development',
         cName: 'dropdown-link'
+    },
+    {
+        title: '게시판',
+        path: '/review',
+        cName: 'dropdown-link'
+    },
+    {
+        title: '공지사항',
+        path: '/notice',
+        cName: 'dropdown-link'
     }
 ]
