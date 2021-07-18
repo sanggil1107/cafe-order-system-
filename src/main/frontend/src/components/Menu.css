@@ -1,0 +1,10 @@
+.food_menu {
+    background: url('foodmenu.jpg') no-repeat 100%;
+    background-size: cover;
+    height: 50vh;
+}
+
+.drink_menu {
+    background-color: beige;
+    height: 50vh;
+}
