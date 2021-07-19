@@ -1,22 +1,37 @@
 //rface
-import React from 'react';
+import React, { useState } from 'react';
 import Video from '../Videos/video.mp4';
-import { HeroContainer, HeroBg, VideoBg } from './HeroElements';
-import './HeroSection.css';
+import { HeroContainer, HeroBg, VideoBg, HeroContent, HeroBtnWrapper, HeroH1, HeroP, ArrowForward, ArrowRight } from './HeroElements';
+import { Button } from '../ButtonElement';
 
 const HeroSection = () => {
+
+    const [ hover, setHover ] = useState(false);
+
+    const onHover = () => {
+        setHover(!hover);
+    }
+
     return (
         <>
-            {/* <HeroContainer>
+            <HeroContainer>
                 <HeroBg>
                     <VideoBg autoPlay loop muted src={Video} type='video/mp4'></VideoBg>
                 </HeroBg>
-            </HeroContainer> */}
-            <div className="container">
-                <div className="herobg">
-                    <video className="videobg" autoPlay loop muted src={Video} type='video.mp4'></video>
-                </div>
-            </div>
+                <HeroContent>
+                    <HeroH1>Virtural Bankign Made Easy</HeroH1>
+                    <HeroP>
+                        Sign up for a new account today and receive $250 in 
+                        credit towards your
+                        next payment.
+                    </HeroP>
+                    <HeroBtnWrapper>
+                        <Button to='signup' onMouseEnter={onHover} onMouseLeave={onHover} primary='true' dark='true'>
+                            Get started {hover ? <ArrowForward/> : <ArrowRight/>}
+                        </Button>
+                    </HeroBtnWrapper>
+                </HeroContent>
+            </HeroContainer>
         </>
     );
 }

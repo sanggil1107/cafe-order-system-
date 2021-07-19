@@ -4,17 +4,18 @@ import React from 'react';
 import Main from './components/Main';
 import Login from './components/Login';
 import ReviewMain from './components/ReviewMain';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar/Navbar';
 import ReviewDetail from './components/ReviewDetail';
 import ReviewWrite from './components/ReviewWrite';
 import Menu from './components/Menu';
+import Sidebar from './components/Sidebar/Sidebar';
 
 const App = () => {
 
     return (
         <div>
             <Router>
-                <NavBar></NavBar>
+       
                 <Switch>
                     {/* exact?? */}
                     <Route exact path="/" component={Main}></Route>
