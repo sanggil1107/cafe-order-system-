@@ -1,6 +1,6 @@
 //rface
 import React, { useState } from 'react';
-import Video from '../Videos/video.mp4';
+import Video from '../../Videos/video.mp4';
 import { HeroContainer, HeroBg, VideoBg, HeroContent, HeroBtnWrapper, HeroH1, HeroP, ArrowForward, ArrowRight } from './HeroElements';
 import { Button } from '../ButtonElement';
 
