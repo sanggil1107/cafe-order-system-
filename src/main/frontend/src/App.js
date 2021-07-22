@@ -7,9 +7,10 @@ import ReviewMain from './components/ReviewMain';
 import NavBar from './components/Navbar/Navbar';
 import ReviewDetail from './components/ReviewDetail';
 import ReviewWrite from './components/ReviewWrite';
-import Menu from './components/Menu';
-import Sidebar from './components/Sidebar/Sidebar';
-import Signin from './components/Signin';
+import Menu from './components/Menu/Menu';
+// import Signin from './components/Signin';
+import Signin from './components/Signin/Sginin';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
                     <Route exact path="/review/view/:id" component={ReviewDetail}></Route>
                     <Route exact path="/review/write" component={ReviewWrite}></Route>
                 </Switch>
+                <Footer />
             </Router>
         </div>
     );

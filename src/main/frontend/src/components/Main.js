@@ -19,13 +19,13 @@ const Main = () => {
     return (
         <>
             <Sidebar isOpen={isOpen} toggle={toggle}/>
-            <Navbar toggle={toggle}/>
+            {/* <Navbar toggle={toggle}/> */}
             <HeroSection/>
             <InfoSection {...homeOne} />
             <InfoSection {...homeTwo} />
             <Services />
             <InfoSection {...homeThree} />
-            <Footer />
+
         </>
     );
 }
