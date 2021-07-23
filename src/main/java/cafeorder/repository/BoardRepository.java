@@ -3,9 +3,9 @@ package cafeorder.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import cafeorder.entity.ReviewEntity;
+import cafeorder.entity.BoardEntity;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<ReviewEntity, Integer> {
+public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
   
 }

@@ -13,14 +13,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "tb_review")
+@Table(name = "tb_board")
 @NoArgsConstructor
 @Data
-public class ReviewEntity {
+public class BoardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int reviewId;
+    private int boardId;
 
     @Column(nullable = false)
     private String title;

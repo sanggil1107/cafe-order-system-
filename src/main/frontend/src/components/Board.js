@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './review.css'
+import './board.css'
 
-const Review = ({reviews}) => {
+const Board = ({boards}) => {
 
     return (
         <div class="container">
@@ -24,19 +24,19 @@ const Review = ({reviews}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        { reviews && reviews.map((review, i) => (
+                        { boards && boards.map((board, i) => (
                             <tr>
-                                <td>{review.reviewId}</td>
+                                <td>{board.boardId}</td>
                                 <td class="title">
-                                    <Link to={`/review/view/${review.reviewId}`}>{review.title}</Link>
+                                    <Link to={`/board/view/${board.boardId}`}>{board.title}</Link>
                                 </td>
-                                <td>{review.cnt}</td>
-                                <td>{review.createTime}</td>
+                                <td>{board.cnt}</td>
+                                <td>{board.createTime}</td>
                             </tr>
                         )) }
                     </tbody>
                 </table>
-                <Link to="/review/write">
+                <Link to="/board/write">
                     <button>글 쓰기</button>
                 </Link>
             </div>
@@ -44,4 +44,4 @@ const Review = ({reviews}) => {
     );
 }
 
-export default Review;
+export default Board;

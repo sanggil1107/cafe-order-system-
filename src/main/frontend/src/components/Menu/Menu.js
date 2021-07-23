@@ -1,12 +1,26 @@
-import React from 'react';
-import InfoSection from '../InfoSection/InfoSection';
-import { DrinkMenu, FoodMenu } from '../InfoSection/Data';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import Contents from '../Contents/Contents';
+import { DrinkMenu, FoodMenu, ProductMenu } from '../Contents/ContentsData';
+import ScrollToTop from '../ScrollToTop';
 
 const Menu = () => {
+
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        console.log('dd');
+        window.onbeforeunload = () => {
+            window.scrollTo(0, 0);
+        };
+    }, [pathname]);
+
     return (
         <>
-            <InfoSection {...FoodMenu}/>
-            <InfoSection {...DrinkMenu}/>                
+            <ScrollToTop />
+            <Contents {...FoodMenu}/>
+            <Contents {...DrinkMenu}/>
+            <Contents {...ProductMenu}/>                
         </>
     );
 }

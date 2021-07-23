@@ -10,11 +10,12 @@ export const Container = styled.div`
     top: 0;
     z-index: -2;
     overflow: hidden;
-    background: linear-gradient(
+    background: white;
+    /* background: linear-gradient(
         108deg,
         rgba(1, 147, 86, 1) 0%,
         rgba(10, 201, 122, 1) 100%
-    );
+    ); */
 `;
 
 export const FormWrap = styled.div`

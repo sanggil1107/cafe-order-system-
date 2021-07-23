@@ -1,27 +1,27 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import ReviewService from '../service/ReviewService';
-import './review.css'
+import BoardService from '../service/BoardService';
+import './board.css'
 
-const ReviewDetail = (props) => {
+const BoardDetail = (props) => {
 
-    const [ review, setReview ] = useState({
+    const [ board, setBoard ] = useState({
         title: '',
         contents: ''
     });
 
     const getValue = e => {
         const {name, value} = e.target;
-        console.log(review);
+        console.log(board);
         console.log(e.target.value);
-        setReview({
-            ...review,
+        setBoard({
+            ...board,
             [name]: value
         });
     }
 
     const onUpdate = () => {
-        ReviewService.updateReview(review).then(res => {
+        BoardService.updateBoard(board).then(res => {
             console.log(res.data);
             props.history.goBack();
         })
@@ -31,7 +31,7 @@ const ReviewDetail = (props) => {
     }
 
     const onDelete = (Id) => {
-        ReviewService.deleteReview(Id).then(res => {
+        BoardService.deleteBoard(Id).then(res => {
             console.log(res.data);
             props.history.goBack();
         })
@@ -39,9 +39,9 @@ const ReviewDetail = (props) => {
 
     useEffect(() => {
         const Id  = props.match.params.id;
-        ReviewService.getReview(Id).then(res => {
+        BoardService.getBoard(Id).then(res => {
             console.log(res.data);
-            setReview(res.data);
+            setBoard(res.data);
         });
     }, [props.match.params.id])
 
@@ -60,25 +60,25 @@ const ReviewDetail = (props) => {
                     <tbody>
                         <tr>
                             <th scope="row">글 번호</th>
-                            <td>{review.reviewId}</td>
+                            <td>{board.reviewId}</td>
                             <th scope="row">조회수</th>
-                            <td>{review.cnt}</td>
+                            <td>{board.cnt}</td>
                         </tr>
                         <tr>
                             <th scope="row">작성자</th>
                             <td></td>
                             <th scope="row">작성일</th>
-                            <td>{review.createTime}</td>
+                            <td>{board.createTime}</td>
                         </tr>
                         <tr>
                             <th scope="row">제목</th>
                             <td colspan="3">
-                                <input type="text" id="title" name="title" value={review.title} onChange={getValue}/>
+                                <input type="text" id="title" name="title" value={board.title} onChange={getValue}/>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" class="view_text">
-                                <textarea name="contents" id="contents" title="내용" value={review.contents} onChange={getValue}/>
+                                <textarea name="contents" id="contents" title="내용" value={board.contents} onChange={getValue}/>
                             </td>
                         </tr>
                     </tbody>
@@ -97,4 +97,4 @@ const ReviewDetail = (props) => {
     );
 }
 
-export default ReviewDetail;
+export default BoardDetail;

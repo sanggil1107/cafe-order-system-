@@ -1,10 +1,11 @@
 import React from 'react';
-import Footer from '../Footer/Footer';
+import ScrollToTop from '../ScrollToTop';
 import { Container, Form, FormButton, FormContent, FormH1, FormInput, FormLabel, FormWrap, Icon, Text } from './SigninElements';
 
 export const Sginin = () => {
     return (
         <>
+            <ScrollToTop />
             <Container>
                 <FormWrap>
                     <Icon to='/'>로그인</Icon>

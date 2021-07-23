@@ -1,11 +1,11 @@
 import React from 'react';
-import './review.css'
+import './board.css'
 import { useState } from 'react';
-import ReviewService from '../service/ReviewService';
+import BoardService from '../service/BoardService';
 
-const ReviewWrite = (props) => {
+const BoardWrite = (props) => {
 
-    const [review, setReview] = useState({
+    const [board, setBoard] = useState({
         title: '',
         contents: ''
     });
@@ -13,15 +13,15 @@ const ReviewWrite = (props) => {
     const getValue = e => {
         const {name, value} = e.target;
         console.log(name, value);
-        setReview({
-            ...review,
+        setBoard({
+            ...board,
             [name]: value,
         });
-        console.log(review);
+        console.log(board);
     }
 
     const onSubmit = () => {
-        ReviewService.insertReview(review).then(res => {
+        BoardService.insertBoard(board).then(res => {
             //props.history.push('/');  ??
             props.history.goBack();
         });
@@ -52,4 +52,4 @@ const ReviewWrite = (props) => {
     );
 }
 
-export default ReviewWrite;
+export default BoardWrite;
