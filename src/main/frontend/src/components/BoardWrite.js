@@ -1,7 +1,7 @@
 import React from 'react';
 import './board.css'
 import { useState } from 'react';
-import BoardService from '../service/BoardService';
+import BoardService from '../service_backend/BoardService';
 
 const BoardWrite = (props) => {
 

@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const ContentsContainer = styled.div`
     color: #fff;
     background: ${({ lightBg }) => (lightBg ? '#f9f9f9' : '#010606')};
-
+    background-image: url(${({bgImg}) => (bgImg ? bgImg : bgImg)});
+    background-size: cover;
+    background-repeat: no-repeat;
     @media screen and (max-width: 768px) {
         padding: 100px 0;
     }
@@ -107,4 +109,5 @@ export const Img = styled.img`
     margin: 0 0 10px 0;
     padding-right: 0;
     background-repeat: repeat;
+    background-image: url(${({ bgImg }) => (bgImg ? bgImg : bgImg )});
 `;

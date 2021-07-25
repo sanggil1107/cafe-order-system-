@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import BoardService from '../service/BoardService';
+import BoardService from '../service_backend/BoardService';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Paging from './Paging';
 import Board from './Board';
-import BoardDetail from './BoardDetail';
-import BoardWrite from './BoardWrite';
 
 
 const BoardMain = () => {
     
-    const [ boards, setReviwes ] = useState([]);
+    const [ boards, setBoards ] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ boardsPerPage, setBoardsPerPage ] = useState(10);
 
@@ -30,13 +28,13 @@ const BoardMain = () => {
     }
     useEffect(() => {
         BoardService.getBoardlist().then(res => {
-            setReviwes(res.data); 
+            setBoards(res.data); 
         });
 
     }, [])
     
     return (
-        <div>
+        <>
             
             <Board boards={currentBoard()}></Board>
             <Paging page={currentPage} count={boards.length} setPage={setCurrentPage}></Paging>
@@ -48,7 +46,7 @@ const BoardMain = () => {
                 </Switch>
             </Router> */}
 
-        </div>
+        </>
     );
 }
 

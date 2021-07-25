@@ -1,6 +1,6 @@
 import React from 'react';
 import { animateScroll as scroll } from 'react-scroll';
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaBlog, FaBlogger, FaBloggerB, FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { FooterContainer, FooterWrap, FooterLinksContainer, FooterLink, FooterLinkItems, FooterLinkTitle, FooterLinksWrapper, SocialIconLink, SocialLogo, SocialIcons, SocialMedia, SocialMediaWrap, WebsiteRights } from './FooterElements';
 
 const Footer = () => {
@@ -52,10 +52,13 @@ const Footer = () => {
                 </FooterLinksContainer>
                 <SocialMedia>
                     <SocialMediaWrap>
-                        <SocialLogo to='/' onClick={toggleHome}>
-                            cafee
-                        </SocialLogo>
-                        <WebsiteRights>ysg ⓒ {new Date().getFullYear()}
+      
+                        <SocialIcons>
+                            <SocialIconLink href='/' target="_blank" aria-label='Github'>
+                                <FaGithub />
+                            </SocialIconLink>
+                        </SocialIcons>
+                        <WebsiteRights>SangGil Yang ⓒ {new Date().getFullYear()}
                         All rights reserved.</WebsiteRights>
                         <SocialIcons>
                             <SocialIconLink href='/' target="_blank" aria-label='Facebook'>

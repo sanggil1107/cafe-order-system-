@@ -100,6 +100,10 @@ export const NavLinks = styled(LinkR)`
     &.active {
         border-bottom: 4px solid #01bf71;
     }
+
+    &:hover {
+        color: #01bf71;
+    }
 `;
 
 

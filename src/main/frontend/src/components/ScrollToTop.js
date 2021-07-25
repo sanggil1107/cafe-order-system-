@@ -5,9 +5,15 @@ export default function ScrollToTop() {
     const { pathname } = useLocation();
 
     useEffect(() => {
-        console.log('dfdf');
+        // window.onbeforeunload = () => {
+        //     alert('dd');
+        // };
+        if (window.onbeforeunload) {
+            console.log("2");
+        }
+        console.log('scroll');
         window.scrollTo(0, 0);
-    }, [pathname]);
+    }, []);
 
     return null;
 }

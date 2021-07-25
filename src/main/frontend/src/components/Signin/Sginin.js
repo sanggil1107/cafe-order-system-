@@ -2,7 +2,7 @@ import React from 'react';
 import ScrollToTop from '../ScrollToTop';
 import { Container, Form, FormButton, FormContent, FormH1, FormInput, FormLabel, FormWrap, Icon, Text } from './SigninElements';
 
-export const Sginin = () => {
+const Sginin = () => {
     return (
         <>
             <ScrollToTop />

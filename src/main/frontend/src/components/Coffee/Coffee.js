@@ -1,15 +1,15 @@
 import React from 'react';
 import Contents from '../Contents/Contents';
-import { Event, Notice, Board } from '../Contents/ContentsData';
+import { CoffeeMenu, CoffeeFinder, CoffeeStory } from '../Contents/ContentsData';
 import ScrollToTop from '../ScrollToTop';
 
-export const Coffee = () => {
+const Coffee = () => {
     return (
         <>
             <ScrollToTop />
-            <Contents {...Event}/>    
-            <Contents {...Notice}/>
-            <Contents {...Board}/>
+            <Contents {...CoffeeMenu}/>    
+            <Contents {...CoffeeFinder}/>
+            <Contents {...CoffeeStory}/>
         </>
     );
 }

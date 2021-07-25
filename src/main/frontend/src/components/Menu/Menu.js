@@ -11,15 +11,16 @@ const Menu = () => {
     useEffect(() => {
         console.log('dd');
         window.onbeforeunload = () => {
+            console.log('11');
             window.scrollTo(0, 0);
         };
-    }, [pathname]);
+    }, []);
 
     return (
         <>
             <ScrollToTop />
-            <Contents {...FoodMenu}/>
             <Contents {...DrinkMenu}/>
+            <Contents {...FoodMenu}/>
             <Contents {...ProductMenu}/>                
         </>
     );

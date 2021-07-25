@@ -3,12 +3,12 @@ import Contents from '../Contents/Contents';
 import { Event, Notice, Board } from '../Contents/ContentsData';
 import ScrollToTop from '../ScrollToTop';
 
-export const News = () => {
+const News = () => {
     return (
         <>
             <ScrollToTop />
-            <Contents {...Event}/>    
             <Contents {...Notice}/>
+            <Contents {...Event}/>    
             <Contents {...Board}/>
         </>
     );

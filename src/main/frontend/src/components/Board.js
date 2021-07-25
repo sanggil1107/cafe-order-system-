@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './board.css'
 
@@ -28,7 +28,7 @@ const Board = ({boards}) => {
                             <tr>
                                 <td>{board.boardId}</td>
                                 <td class="title">
-                                    <Link to={`/board/view/${board.boardId}`}>{board.title}</Link>
+                                    <Link to={`/news/board/view/${board.boardId}`}>{board.title}</Link>
                                 </td>
                                 <td>{board.cnt}</td>
                                 <td>{board.createTime}</td>
@@ -36,7 +36,7 @@ const Board = ({boards}) => {
                         )) }
                     </tbody>
                 </table>
-                <Link to="/board/write">
+                <Link to="/news/board/write">
                     <button>글 쓰기</button>
                 </Link>
             </div>

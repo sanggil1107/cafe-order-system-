@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import BoardService from '../service/BoardService';
+import BoardService from '../service_backend/BoardService';
 import './board.css'
 
 const BoardDetail = (props) => {

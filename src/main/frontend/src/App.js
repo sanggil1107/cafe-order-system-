@@ -12,7 +12,15 @@ import Footer from './components/Footer/Footer';
 import Sidebar from './components/Sidebar/Sidebar';
 import News from './components/News/News';
 import Coffee from './components/Coffee/Coffee';
-import Store from './components/Store';
+import Store from './components/Store/Store';
+import FoodMenu from './components/Menu/FoodMenu';
+import DrinkMenu from './components/Menu/DrinkMenu';
+import ProductMenu from './components/Menu/ProductMenu';
+import Event from './components/News/Event';
+import Notice from './components/News/Notice';
+import CoffeeMenu from './components/Coffee/CoffeeMenu';
+import CoffeeFinder from './components/Coffee/CoffeeFinder';
+import CoffeeStory from './components/Coffee/CoffeeStory';
 
 const App = () => {
 
@@ -33,12 +41,20 @@ const App = () => {
                     <Route exact path="/login" component={Login}></Route>
                     <Route exact path="/signin" component={Signin}></Route>
                     <Route exact path="/menu" component={Menu}></Route>
+                    <Route exact path="/menu/food_menu" component={FoodMenu}></Route>
+                    <Route exact path="/menu/drink_menu" component={DrinkMenu}></Route>
+                    <Route exact path="/menu/product_menu" component={ProductMenu}></Route>
                     <Route exact path="/coffee" component={Coffee}></Route>
+                    <Route exact path="/coffee/coffee_menu" component={CoffeeMenu}></Route>
+                    <Route exact path="/coffee/coffee_finder" component={CoffeeFinder}></Route>
+                    <Route exact path="/coffee/coffee_story" component={CoffeeStory}></Route>
                     <Route exact path="/store" component={Store}></Route>
                     <Route exact path="/news" component={News}></Route>
-                    <Route exact path="/board" component={BoardMain}></Route>
-                    <Route exact path="/board/view/:id" component={BoardDetail}></Route>
-                    <Route exact path="/board/write" component={BoardWrite}></Route>
+                    <Route exact path="/news/event" component={Event}></Route>
+                    <Route exact path="/news/notice" component={Notice}></Route>
+                    <Route exact path="/news/board" component={BoardMain}></Route>
+                    <Route exact path="/news/board/view/:id" component={BoardDetail}></Route>
+                    <Route exact path="/news/board/write" component={BoardWrite}></Route>
                 </Switch>
                 <Footer />
             </Router>

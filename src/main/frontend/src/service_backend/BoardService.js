@@ -5,7 +5,7 @@ const BOARD_API_URL = "http://localhost:8080/board";
 class BoardService {
     
     // 리뷰 목록
-    getBaordlist() {
+    getBoardlist() {
         return axios.get(BOARD_API_URL);
     };
 
