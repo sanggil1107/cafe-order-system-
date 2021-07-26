@@ -35,6 +35,7 @@ const App = () => {
             <Router>
                 <Sidebar isOpen={isOpen} toggle={toggle}/>
                 <NavBar toggle={toggle}/>
+                {/* <Nav /> */}
                 <Switch>
                     {/* exact?? */}
                     <Route exact path="/" component={Main}></Route>

@@ -17,7 +17,7 @@ const NavBar = () => {
     }
 
     const onMouseEnter = () => {
-        alert('enver');
+        
         if(window.innerWidth < 960) {
             setDropdown(false);
         }
@@ -27,7 +27,7 @@ const NavBar = () => {
     }
 
     const onMouseLeave = () => {
-        alert('leave');
+        
         if(window.innerWidth < 960) {
             setDropdown(false);
         }

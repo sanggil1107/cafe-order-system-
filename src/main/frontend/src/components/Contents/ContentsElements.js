@@ -4,8 +4,11 @@ export const ContentsContainer = styled.div`
     color: #fff;
     background: ${({ lightBg }) => (lightBg ? '#f9f9f9' : '#010606')};
     background-image: url(${({bgImg}) => (bgImg ? bgImg : bgImg)});
-    background-size: cover;
+    background-size: center/cover;
     background-repeat: no-repeat;
+    /* background-position: center; */
+    object-fit: contain;
+    /* width: 100%; */
     @media screen and (max-width: 768px) {
         padding: 100px 0;
     }
