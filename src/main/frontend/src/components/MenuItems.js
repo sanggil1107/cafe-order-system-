@@ -26,7 +26,7 @@ export const MenuItems = [
     },
     {
         title: '공지사항',
-        path: '/notice',
+        path: 'notice',
         cName: 'dropdown-link'
     }
 ]

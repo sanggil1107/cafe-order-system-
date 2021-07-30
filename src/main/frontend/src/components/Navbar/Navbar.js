@@ -3,48 +3,59 @@ import { FaBars } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import { animateScroll as scroll } from 'react-scroll';
 import Dropdown from '../Dropdown';
+import CategoryService from '../../service_backend/CategoryService';
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './NavbarElements';
 
 const Navbar = ({ toggle }) => {
 
-    const [ menudropdown, setMenudropdown ] = useState(false);
-    const [ coffeedropdown, setCoffeedropdown ] = useState(false);
-    const [ newsdropdown, setNewsdropdown ] = useState(false);
-    const [ scrollNav, setScrollNav ] = useState(false);
+    const [menudropdown, setMenudropdown] = useState(false);
+    const [coffeedropdown, setCoffeedropdown] = useState(false);
+    const [newsdropdown, setNewsdropdown] = useState(false);
+    const [scrollNav, setScrollNav] = useState(false);
+    const [mcategory, setMcategory] = useState([]);
+
+    useEffect(() => {
+        CategoryService.getMainList().then(res => {
+            setMcategory(res.data);
+            console.log(res.data);
+        });
+        window.addEventListener('scroll', changeNav);
+
+    }, []);
 
     const changeNav = () => {
-        if(window.scrollY >= 80) {
+        if (window.scrollY >= 80) {
             setScrollNav(true);
         }
         else {
             setScrollNav(false);
         }
     }
-    
+
     const toggleHome = () => {
         scroll.scrollToTop();
     }
 
-    
+
     const onMouseEnter = (dropdown) => {
-        if(dropdown === 'menudropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'menudropdown') {
+            if (window.innerWidth < 960) {
                 setMenudropdown(false);
             }
             else {
                 setMenudropdown(true);
             }
         }
-        if(dropdown === 'coffeedropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'coffeedropdown') {
+            if (window.innerWidth < 960) {
                 setCoffeedropdown(false);
             }
             else {
                 setCoffeedropdown(true);
             }
         }
-        if(dropdown === 'newsdropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'newsdropdown') {
+            if (window.innerWidth < 960) {
                 setNewsdropdown(false);
             }
             else {
@@ -54,53 +65,53 @@ const Navbar = ({ toggle }) => {
     }
 
     const onMouseLeave = (dropdown) => {
-        if(dropdown === 'menudropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'menudropdown') {
+            if (window.innerWidth < 960) {
                 setMenudropdown(false);
             }
             else {
                 setMenudropdown(false);
             }
         }
-        if(dropdown === 'coffeedropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'coffeedropdown') {
+            if (window.innerWidth < 960) {
                 setCoffeedropdown(false);
             }
             else {
                 setCoffeedropdown(false);
             }
         }
-        if(dropdown === 'newsdropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'newsdropdown') {
+            if (window.innerWidth < 960) {
                 setNewsdropdown(false);
             }
             else {
                 setNewsdropdown(false);
             }
         }
-        
+
     }
 
     const onClickdropdown = (dropdown) => {
-        if(dropdown === 'menudropdown') {
+        if (dropdown === 'menudropdown') {
 
-            if(window.innerWidth < 960) {
+            if (window.innerWidth < 960) {
                 setMenudropdown(false);
             }
             else {
                 setMenudropdown(false);
             }
         }
-        if(dropdown === 'coffeedropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'coffeedropdown') {
+            if (window.innerWidth < 960) {
                 setCoffeedropdown(false);
             }
             else {
                 setCoffeedropdown(false);
             }
         }
-        if(dropdown === 'newsdropdown') {
-            if(window.innerWidth < 960) {
+        if (dropdown === 'newsdropdown') {
+            if (window.innerWidth < 960) {
                 setNewsdropdown(false);
             }
             else {
@@ -108,10 +119,6 @@ const Navbar = ({ toggle }) => {
             }
         }
     }
-
-    useEffect(() => {
-        window.addEventListener('scroll', changeNav)
-    }, [])
 
     return (
         <>
@@ -123,32 +130,55 @@ const Navbar = ({ toggle }) => {
                             <FaBars />
                         </MobileIcon>
                         <NavMenu>
-                            <NavItem onMouseEnter={() => {onMouseEnter('menudropdown')}} onMouseLeave={() => {onMouseLeave('menudropdown')}}>
-                                {/* <NavLinks to='menu' smooth={true} duration={500} spy={true} exact='true' offset={-80}>
-                                    Menu
-                                </NavLinks> */}
-                                <NavLinks to='/menu' onClick={() => {onClickdropdown('menudropdown')}}>
-                                    Menu <i className='fas fa-caret-down'></i>
-                                </NavLinks>
-                                {menudropdown && <Dropdown />}
-                            </NavItem>
-                            <NavItem onMouseEnter={() => {onMouseEnter('coffeedropdown')}} onMouseLeave={() => {onMouseLeave('coffeedropdown')}}>
-                                <NavLinks to='/coffee' onClick={() => {onClickdropdown('coffeedropdown')}}>
-                                    Coffee <i className='fas fa-caret-down'></i>
-                                </NavLinks> 
-                                {coffeedropdown && <Dropdown />}
-                            </NavItem>
-                            <NavItem >
-                                <NavLinks to='/store'>
-                                    Store
-                                </NavLinks>
-                            </NavItem>
-                            <NavItem onMouseEnter={() => {onMouseEnter('newsdropdown')}} onMouseLeave={() => {onMouseLeave('newsdropdown')}}>
-                                <NavLinks to='/news' onClick={() => {onClickdropdown('newsdropdown')}}>
-                                    News <i className='fas fa-caret-down'></i>
-                                </NavLinks>
-                                {newsdropdown && <Dropdown />}
-                            </NavItem>
+
+                            {mcategory && mcategory.map((m, i) => {
+
+                                if (m.mainId === 1) {
+                                    return (
+                                        <NavItem onMouseEnter={() => { onMouseEnter('menudropdown') }} onMouseLeave={() => { onMouseLeave('menudropdown') }}>
+                                            {/* <NavLinks to='menu' smooth={true} duration={500} spy={true} exact='true' offset={-80}>
+                                            Menu
+                                        </NavLinks> */}
+                                            <NavLinks to='/menu' onClick={() => { onClickdropdown('menudropdown') }}>
+                                                {m.name} <i className='fas fa-caret-down'></i>
+                                            </NavLinks>
+                                            {menudropdown && <Dropdown id={m.mainId}/>}
+                                        </NavItem>
+                                    )
+                                }
+                                if (m.mainId === 2) {
+                                    return (
+
+                                        <NavItem onMouseEnter={() => { onMouseEnter('coffeedropdown') }} onMouseLeave={() => { onMouseLeave('coffeedropdown') }}>
+                                            <NavLinks to='/coffee' onClick={() => { onClickdropdown('coffeedropdown') }}>
+                                                {m.name} <i className='fas fa-caret-down'></i>
+                                            </NavLinks>
+                                            {coffeedropdown && <Dropdown id={m.mainId}/>}
+                                        </NavItem>
+                                    )
+                                }
+                                if (m.mainId === 3) {
+                                    return (
+
+                                        <NavItem >
+                                            <NavLinks to='/store'>
+                                                {m.name}
+                                            </NavLinks>
+                                        </NavItem>
+                                    )
+                                }
+                                if (m.mainId === 4) {
+                                    return (
+
+                                        <NavItem onMouseEnter={() => { onMouseEnter('newsdropdown') }} onMouseLeave={() => { onMouseLeave('newsdropdown') }}>
+                                            <NavLinks to='/news' onClick={() => { onClickdropdown('newsdropdown') }}>
+                                                {m.name} <i className='fas fa-caret-down'></i>
+                                            </NavLinks>
+                                            {newsdropdown && <Dropdown id={m.mainId}/>}
+                                        </NavItem>
+                                    )
+                                }
+                            })}
                         </NavMenu>
                         <NavBtn>
                             <NavBtnLink to='/signin'>Sign In</NavBtnLink>

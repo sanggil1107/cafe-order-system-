@@ -6,6 +6,9 @@ const Contents = ({ lightBg, imgStart, topLine, lightText, title, headLine, dark
     return (
         <>
             <ContentsContainer lightBg={lightBg} bgImg={img}>
+                <div>
+                    <Img src={img}></Img>
+                
                 <ContentsWrapper>
                     <ContentsRow imgStart={imgStart}>
                         <Column1>
@@ -30,12 +33,13 @@ const Contents = ({ lightBg, imgStart, topLine, lightText, title, headLine, dark
                         </Column1>
                         <Column2>
                             <ImgWrap>
-                                {/* <Img bgImg={imag} alt={alt} /> */}
+                                <Img src={img} alt={alt} />
 
                             </ImgWrap>
                         </Column2>
                     </ContentsRow>
                 </ContentsWrapper>
+                </div>
             </ContentsContainer>
         </>
     );

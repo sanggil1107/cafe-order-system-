@@ -1,9 +1,9 @@
-import React, { useState } from 'react'; // imr
+import React, { useState, useEffect } from 'react'; // imr
 import { MenuItems } from './MenuItems';
 import { Link } from 'react-router-dom';
 import './Dropdown.css';
 
-const Dropdown = () => {
+const Dropdown = ({id}) => {
 
     const [ click, setClick ] = useState(false);
 
