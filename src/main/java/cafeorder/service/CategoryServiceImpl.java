@@ -29,11 +29,11 @@ public class CategoryServiceImpl implements CategoryService {
         //SubCategoryEntity subCategoryEntity = new SubCategoryEntity();
         //subCategoryEntity.setMainCategoryEntity(mainCategoryEntity);
         //System.out.println(subCategoryEntity.getMainCategoryEntity().getName());
-        System.out.println(subCategoryRepository.findAllByMainId(mainId));
-        return subCategoryRepository.findAllByMainId(mainId);
         // MainCategoryEntity mainCategoryEntity = mainCategoryRepository.getById(mainId);
         // List<SubCategoryEntity> subCategoryEntities = mainCategoryEntity.getSubCategoryEntities();
-   
+        
         // return subCategoryRepository.findAll();
+        System.out.println(subCategoryRepository.findAllByMainId(mainId));
+        return subCategoryRepository.findAllByMainId(mainId);
     }
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'; // imr
-import { MenuItems } from './MenuItems';
 import { Link } from 'react-router-dom';
 import './Dropdown.css';
 import CategoryService from '../service_backend/CategoryService';
@@ -17,7 +16,6 @@ const Dropdown = ({id}) => {
     useEffect(() => {
         CategoryService.getSubList(id).then(res => {
             setCategory(res.data);
-            console.log(res.data);
         }).catch(err => console.log(err));
     }, [id]);
 
