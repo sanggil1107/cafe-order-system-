@@ -24,7 +24,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     // 서브 카테고리 목록
-    public List<SubCategoryEntity> selectSubList() throws Exception {
-        return subCategoryRepository.findAll();
+    public List<SubCategoryEntity> selectSubList(int main) throws Exception {
+        MainCategoryEntity mainId = mainCategoryRepository.getById(main);
+        //SubCategoryEntity subCategoryEntity = new SubCategoryEntity();
+        //subCategoryEntity.setMainCategoryEntity(mainCategoryEntity);
+        //System.out.println(subCategoryEntity.getMainCategoryEntity().getName());
+        System.out.println(subCategoryRepository.findAllByMainId(mainId));
+        return subCategoryRepository.findAllByMainId(mainId);
+        // MainCategoryEntity mainCategoryEntity = mainCategoryRepository.getById(mainId);
+        // List<SubCategoryEntity> subCategoryEntities = mainCategoryEntity.getSubCategoryEntities();
+   
+        // return subCategoryRepository.findAll();
     }
 }

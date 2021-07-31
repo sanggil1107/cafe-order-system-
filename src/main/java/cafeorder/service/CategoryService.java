@@ -7,5 +7,5 @@ import cafeorder.entity.SubCategoryEntity;
 
 public interface CategoryService {
     List<MainCategoryEntity> selectMainList() throws Exception;
-    List<SubCategoryEntity> selectSubList() throws Exception;
+    List<SubCategoryEntity> selectSubList(int mainId) throws Exception;
 }
