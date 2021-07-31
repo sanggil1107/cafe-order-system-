@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cafeorder.entity.MainCategoryEntity;
-import cafeorder.entity.SubCategoryEntity;
+import cafeorder.entity.MainCategory;
+import cafeorder.entity.SubCategory;
 import cafeorder.repository.MainCategoryRepository;
 import cafeorder.repository.SubCategoryRepository;
 
@@ -19,13 +19,13 @@ public class CategoryServiceImpl implements CategoryService {
     SubCategoryRepository subCategoryRepository;
 
     // 메인 카테고리 목록
-    public List<MainCategoryEntity> selectMainList() throws Exception {
+    public List<MainCategory> selectMainList() throws Exception {
         return mainCategoryRepository.findAll();
     }
 
     // 서브 카테고리 목록
-    public List<SubCategoryEntity> selectSubList(int main) throws Exception {
-        MainCategoryEntity mainId = mainCategoryRepository.getById(main);
+    public List<SubCategory> selectSubList(int main) throws Exception {
+        MainCategory mainId = mainCategoryRepository.getById(main);
         //SubCategoryEntity subCategoryEntity = new SubCategoryEntity();
         //subCategoryEntity.setMainCategoryEntity(mainCategoryEntity);
         //System.out.println(subCategoryEntity.getMainCategoryEntity().getName());

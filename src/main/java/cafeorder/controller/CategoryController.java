@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cafeorder.entity.MainCategoryEntity;
-import cafeorder.entity.SubCategoryEntity;
+import cafeorder.entity.MainCategory;
+import cafeorder.entity.SubCategory;
 import cafeorder.service.CategoryService;
 
 
@@ -25,13 +25,13 @@ public class CategoryController {
 
     // 메인 카테고리 목록
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public List<MainCategoryEntity> MainList(Model model) throws Exception{
+    public List<MainCategory> MainList(Model model) throws Exception{
         return categoryService.selectMainList();
     }
 
     // 서브 카테고리 목록
     @RequestMapping(value = "/sub", method = RequestMethod.GET)
-    public List<SubCategoryEntity> SubList(@RequestParam("mainId") int mainId) throws Exception{
+    public List<SubCategory> SubList(@RequestParam("mainId") int mainId) throws Exception{
         System.out.println(mainId);
         return categoryService.selectSubList(mainId);
     }

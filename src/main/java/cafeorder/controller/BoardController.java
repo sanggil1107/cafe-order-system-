@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cafeorder.entity.BoardEntity;
+import cafeorder.entity.Board;
 import cafeorder.service.BoardService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,7 +24,7 @@ public class BoardController {
 
     // 리뷰 목록
     @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public List<BoardEntity> BoardList(Model model) throws Exception {
+    public List<Board> BoardList(Model model) throws Exception {
         return boardService.selectBoardList();
     }
 
@@ -36,20 +36,20 @@ public class BoardController {
 
     // 리뷰 작성
     @RequestMapping(value = "/board/write", method = RequestMethod.POST)
-    public void InsertBoard(@RequestBody BoardEntity boardEntity) throws Exception {
-        boardService.saveBoard(boardEntity);
+    public void InsertBoard(@RequestBody Board Board) throws Exception {
+        boardService.saveBoard(Board);
     }
 
     // 리뷰 상세 화면
     @RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-    public BoardEntity BoardDetail(@RequestParam("boardId") int boardId) throws Exception {
+    public Board BoardDetail(@RequestParam("boardId") int boardId) throws Exception {
         return boardService.selectBoardDetail(boardId);
     }
 
     // 리뷰 수정
     @RequestMapping(value = "/board/update", method = RequestMethod.PUT)
-    public void UpdateBoard(@RequestBody BoardEntity boardEntity) throws Exception {
-        boardService.saveBoard(boardEntity);
+    public void UpdateBoard(@RequestBody Board Board) throws Exception {
+        boardService.saveBoard(Board);
     }
 
     // 리뷰 삭제

@@ -2,6 +2,7 @@ package cafeorder.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,21 +13,22 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_user")
 @NoArgsConstructor
 @Data
-public class UserEntity {
+public class User {
 
     @Id
+    @GeneratedValue
     private String userId;
 
-    @Column(nullable = false)
-    private String userName;
+    @Column(name = "pwd")
+    private String pwd;
 
-    @Column(nullable = false)
-    private String password;
+    @Column(name = "grade")
+    private String grade;
 
-    @Column(nullable = false)
-    private String tel;
+    @Column()
+    private String instdate;
 
-    @Column(nullable = false)
-    private int points;
+    @Column(name = "address")
+    private String address;
 
 }

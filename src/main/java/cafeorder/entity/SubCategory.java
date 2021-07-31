@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_sub_category")
 @NoArgsConstructor
 @Data
-public class SubCategoryEntity {
+public class SubCategory {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class SubCategoryEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinColumn(name = "main_id")
-    private MainCategoryEntity mainId;
+    private MainCategory mainId;
 
     @Column(name = "name")
     private String name;

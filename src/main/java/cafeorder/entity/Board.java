@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_board")
 @NoArgsConstructor
 @Data
-public class BoardEntity {
+public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
