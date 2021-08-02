@@ -1,5 +1,7 @@
 package cafeorder.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +27,8 @@ public class User {
     @Column(name = "grade")
     private String grade;
 
-    @Column()
-    private String instdate;
+    @Column(name = "instdate")
+    private LocalDate instdate;
 
     @Column(name = "address")
     private String address;

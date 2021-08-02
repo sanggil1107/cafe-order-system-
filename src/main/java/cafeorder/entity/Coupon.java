@@ -1,5 +1,7 @@
 package cafeorder.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,10 +29,10 @@ public class Coupon {
     private int couponPrice;
 
     @Column(name = "createdate")
-    private int createdate;
+    private LocalDateTime createdate;
 
     @Column(name = "validationdate")
-    private int validationdate;
+    private LocalDateTime validationdate;
 
     @Column(name = "deleteyn")
     private String deleteyn;

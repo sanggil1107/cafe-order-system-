@@ -1,5 +1,7 @@
 package cafeorder.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +30,7 @@ public class Cart {
     private User userId;
 
     @Column(name = "createdate")
-    private int createdate;
+    private LocalDateTime createdate;
 
     @Column(name = "product_count")
     private int productCount;
