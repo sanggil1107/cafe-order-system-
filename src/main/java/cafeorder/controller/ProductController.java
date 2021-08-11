@@ -19,14 +19,24 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // 제품 조회
+    // 음료 조회
+    public List<Product> DrinkList(Model model) throws Exception {
+        return null;
+    }
+
+    // 상품 조회
     public List<Product> ProductList(Model model) throws Exception {
         return null;
     }
 
+    // 푸드 조회
+    public List<Product> FoodList(Model model) throws Exception {
+        return null;
+    }
 
-    // 제품 상세정보
+    // 제품 상세정보(공통)
     public Product ProductDetail(@RequestParam("productId") int productId) throws Exception {
         return null;        
     }
+
 }
