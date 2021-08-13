@@ -1,5 +1,7 @@
 package cafeorder.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -14,8 +16,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_coupon_user")
 @NoArgsConstructor
 @Data
-public class CouponUser {
+public class CouponUser implements Serializable {
     
+    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "coupon_id")
     private Coupon couponId;
