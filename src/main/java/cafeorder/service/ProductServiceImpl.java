@@ -19,20 +19,25 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private SubCategoryRepository subCategoryRepository;
 
+    // 푸드 조회
     @Override
-    public List<Product> DrinkList() throws Exception {
+    public List<Product> FoodList() throws Exception {
         SubCategory subId = subCategoryRepository.getById(1);
         return productRepository.findAllBySubId(subId);
     }
-
+ 
+    // 음료 조회
     @Override
-    public List<Product> ProductList() throws Exception {
-        return null;
+    public List<Product> DrinkList() throws Exception {
+        SubCategory subId = subCategoryRepository.getById(2);
+        return productRepository.findAllBySubId(subId);
     }
 
+    // 상품 조회
     @Override
-    public List<Product> FoodList() throws Exception {
-        return null;
+    public List<Product> ProductList() throws Exception {
+        SubCategory subId = subCategoryRepository.getById(3);
+        return productRepository.findAllBySubId(subId);
     }
 
     @Override

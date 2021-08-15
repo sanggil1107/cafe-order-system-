@@ -15,7 +15,7 @@ const Main = () => {
             <HeroSection/>
             <InfoSection {...homeOne} />
             <InfoSection {...homeTwo} />
-            <Services />
+            {/* <Services /> */}
             <InfoSection {...homeThree} />
 
         </>

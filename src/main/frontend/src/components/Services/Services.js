@@ -9,7 +9,7 @@ export const Services = () => {
         <ServicesContainer id="services">
             <ServicesH1>Our Services</ServicesH1>
             <ServicesWrapper>
-                <ServicesCard>
+                {/* <ServicesCard>
                     <ServicesIcon src={Icon1}/>
                     <ServicesH2>Reduce expensive</ServicesH2>
                     <ServicesP>We help reduce your fees and icrease your overall revenue</ServicesP>
@@ -23,6 +23,26 @@ export const Services = () => {
                     <ServicesIcon src={Icon3}/>
                     <ServicesH2>Premium Benefits</ServicesH2>
                     <ServicesP>We help reduce your fees and icrease your overall revenue</ServicesP>
+                </ServicesCard> */}
+                <ServicesCard>
+                    <ServicesIcon src="https://image.istarbucks.co.kr/upload/store/skuimg/2021/06/[9200000003643]_20210623101238720.jpg"/>
+                    {/* <ServicesH2>Premium Benefits</ServicesH2>
+                    <ServicesP>We help reduce your fees and icrease your overall revenue</ServicesP> */}
+                </ServicesCard>
+                <ServicesCard>
+                <ServicesIcon src="https://image.istarbucks.co.kr/upload/store/skuimg/2021/06/[9200000003643]_20210623101238720.jpg"/>
+                    {/* <ServicesH2>Premium Benefits</ServicesH2>
+                    <ServicesP>We help reduce your fees and icrease your overall revenue</ServicesP> */}
+                </ServicesCard>
+                <ServicesCard>
+                <ServicesIcon src="https://image.istarbucks.co.kr/upload/store/skuimg/2021/06/[9200000003643]_20210623101238720.jpg"/>
+                    {/* <ServicesH2>Premium Benefits</ServicesH2>
+                    <ServicesP>We help reduce your fees and icrease your overall revenue</ServicesP> */}
+                </ServicesCard>
+                <ServicesCard>
+                <ServicesIcon src="https://image.istarbucks.co.kr/upload/store/skuimg/2021/06/[9200000003643]_20210623101238720.jpg"/>
+                    {/* <ServicesH2>Premium Benefits</ServicesH2>
+                    <ServicesP>We help reduce your fees and icrease your overall revenue</ServicesP> */}
                 </ServicesCard>
             </ServicesWrapper>
         </ServicesContainer>
