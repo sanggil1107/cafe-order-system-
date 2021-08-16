@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const ServicesContainer = styled.div`
-    height: 800px;
+    /* height: 800px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #010606;
+    background: white;
+
 
     @media screen and (max-width: 768px) {
         height: 1100px;
@@ -20,6 +21,7 @@ export const ServicesContainer = styled.div`
 export const ServicesWrapper = styled.div`
     max-width: 1200px;
     margin: 0 auto;
+    margin-bottom: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
@@ -63,7 +65,8 @@ export const ServicesIcon = styled.img`
 
 export const ServicesH1 = styled.h1`
     font-size: 2.5rem;
-    color: #fff;
+    color: black;
+    margin-top: 50px;
     margin-bottom: 64px;
 
     @media screen and (max-width: 480px) {
