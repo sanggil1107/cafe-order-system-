@@ -19,9 +19,9 @@ const Menu = () => {
     return (
         <>
             <ScrollToTop />
-            <Contents {...DrinkMenu}/>
             <Contents {...FoodMenu}/>
-            <Contents {...ProductMenu}/>                
+            <Contents {...DrinkMenu}/>
+            <Contents {...ProductMenu}/>
         </>
     );
 }
