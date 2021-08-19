@@ -1,45 +1,34 @@
 import React from 'react'
-import Dialog from '@material-ui/core/Dialog';
-import { DialogTitle } from '@material-ui/core';
+import styled from 'styled-components';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Checkbox from '@material-ui/core/Checkbox';
 
-const MenuDetail = (props) => {
+const Background = styled.div`
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+const ModalWrapper = styled.div`
+    width: 800px;
+    height: 500px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    color: #000;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    z-index: 10;
+    border-radius: 10px;
+`
 
-    const { open, setOpen } = props
-    const handleClose = () => {
-        setOpen(false);
-    };
+export const MenuDetail = ({showModal, setShowModal}) => {
 
     return (
-        <div>
-            <Dialog open={open} onClose={handleClose} maxWidth="md">
-                <DialogTitle>조근팀 설정</DialogTitle>
-                <TableContainer >
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell padding="checkbox">
-                                    <Checkbox />
-                                </TableCell>
-                                <TableCell>팀명</TableCell>
-                                <TableCell>팀코드</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                           
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Dialog>
-        </div>
+        <>
+            {showModal ? <div>Modal</div> : null}
+        </>
     )
-}
-
-export default MenuDetail;
+};
