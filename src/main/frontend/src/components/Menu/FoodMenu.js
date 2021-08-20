@@ -9,7 +9,7 @@ const FoodMenu = () => {
     const [foodList, setFoodList] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const openModal = () => {
-        setShowModal(prev => !prev);
+        setShowModal(true);
     }
 
     useEffect(() => {
@@ -21,16 +21,28 @@ const FoodMenu = () => {
 
     return (
         <ServicesContainer>
+
             <ServicesH1>푸드</ServicesH1>
             <ServicesWrapper>
-                {foodList.map((food, i) => (
+                {/* {foodList.map((food, i) => (
                         <ServicesCard onClick={openModal}>
                             <ServicesIcon src={food.image}/>
                             <ServicesH2>{food.name}</ServicesH2>
                             <MenuDetail showModal={showModal} setShowModal={setShowModal}/>
                             <GlobalStyle />
                         </ServicesCard>
-                ))}
+                ))} */}
+                <ServicesCard onClick={openModal}>
+                    {/* <ServicesIcon src={food.image}/> */}
+                    <ServicesH2>t</ServicesH2>
+                    {showModal && <>
+
+                        <MenuDetail showModal={showModal} setShowModal={setShowModal} />
+                        {/* <GlobalStyle /> */}
+                    </>
+                    }
+
+                </ServicesCard>
             </ServicesWrapper>
         </ServicesContainer>
     );
