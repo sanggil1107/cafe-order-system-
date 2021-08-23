@@ -5,6 +5,7 @@ import { animateScroll as scroll } from 'react-scroll';
 import Dropdown from '../Dropdown';
 import CategoryService from '../../service_backend/CategoryService';
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './NavbarElements';
+import Sginin from '../Signin/Sginin';
 
 const Navbar = ({ toggle }) => {
 
@@ -13,6 +14,7 @@ const Navbar = ({ toggle }) => {
     const [newsdropdown, setNewsdropdown] = useState(false);
     const [scrollNav, setScrollNav] = useState(false);
     const [mcategory, setMcategory] = useState([]);
+    const [signin, setSignin] = useState(false);
 
     useEffect(() => {
         CategoryService.getMainList().then(res => {
@@ -22,6 +24,24 @@ const Navbar = ({ toggle }) => {
         window.addEventListener('scroll', changeNav);
 
     }, []);
+
+    useEffect(() => {
+        if(signin) {
+            document.body.style.cssText = `
+              position: fixed; 
+              top: -${window.scrollY}px;
+              width: 100%;`;
+            return () => {
+              const scrollY = document.body.style.top;
+              document.body.style.cssText = '';
+              window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+            };
+        }
+      }, [signin]);
+
+    const onSignin = () =>{
+        setSignin(true);
+    }
 
     const changeNav = () => {
         if (window.scrollY >= 80) {
@@ -181,7 +201,9 @@ const Navbar = ({ toggle }) => {
                             })}
                         </NavMenu>
                         <NavBtn>
-                            <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+                            <NavBtnLink onClick={onSignin}>Sign In</NavBtnLink>
+                            {signin && <Sginin open={signin} setOpen={setSignin}/>}
+                            
                         </NavBtn>
                     </NavbarContainer>
                 </Nav>

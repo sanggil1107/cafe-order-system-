@@ -1,48 +1,80 @@
 import React, { useEffect, useState } from 'react';
 import { ServicesContainer, ServicesH1, ServicesWrapper, ServicesCard, ServicesIcon, ServicesH2 } from './../Services/ServicesElements';
 import ProductService from '../../service_backend/ProductService';
-import { MenuDetail } from './MenuDetail';
-import { GlobalStyle } from './GlobalStyle'
+import MenuDetail from './MenuDetail';
 
 const FoodMenu = () => {
 
     const [foodList, setFoodList] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const openModal = () => {
-        setShowModal(true);
+    const [modal, setModal] = useState(false);
+
+    const openModal = (i) => {
+        setFoodList(foodList =>
+            foodList.map(list =>
+                list.productId === i ? { ...list, modal: true } : list
+            )
+        );
+        setModal(true);
     }
 
     useEffect(() => {
         ProductService.getFoodList().then(res => {
-            setFoodList(res.data);
-            console.log(res.data);
+
+            const lists = res.data;
+            const temp = [];
+
+            lists.map((list, i) => (
+                temp.push({
+                    productId: list.productId - 1,
+                    name: list.name,
+                    description: list.description,
+                    caffeine: list.caffeine,
+                    fat: list.fat,
+                    images: list.image,
+                    kcal: list.kcal,
+                    price: list.price,
+                    protein: list.protein,
+                    sodium: list.sodium,
+                    subId: list.subId,
+                    sugars: list.sugars,
+                    modal: false
+                })
+            ))
+
+            setFoodList(foodList.concat(temp));
+
         });
     }, []);
 
+    useEffect(() => {
+        if(modal) {
+            document.body.style.cssText = `
+              position: fixed; 
+              top: -${window.scrollY}px;
+              overflow: hidden;
+              width: 100%;`;
+            return () => {
+              const scrollY = document.body.style.top;
+              document.body.style.cssText = '';
+              window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+            };
+        }
+      }, [modal]);
+
     return (
         <ServicesContainer>
-
             <ServicesH1>푸드</ServicesH1>
             <ServicesWrapper>
-                {/* {foodList.map((food, i) => (
-                        <ServicesCard onClick={openModal}>
-                            <ServicesIcon src={food.image}/>
+                { foodList.map((food, i) => (
+                    <>
+                        <ServicesCard onClick={() => openModal(food.productId)}>
+                            <ServicesIcon src={food.images}></ServicesIcon>
                             <ServicesH2>{food.name}</ServicesH2>
-                            <MenuDetail showModal={showModal} setShowModal={setShowModal}/>
-                            <GlobalStyle />
                         </ServicesCard>
-                ))} */}
-                <ServicesCard onClick={openModal}>
-                    {/* <ServicesIcon src={food.image}/> */}
-                    <ServicesH2>t</ServicesH2>
-                    {showModal && <>
-
-                        <MenuDetail showModal={showModal} setShowModal={setShowModal} />
-                        {/* <GlobalStyle /> */}
+                        <MenuDetail lists={foodList} setLists={setFoodList} menu={food} modal={setModal}/>
                     </>
-                    }
+                )) }
 
-                </ServicesCard>
             </ServicesWrapper>
         </ServicesContainer>
     );

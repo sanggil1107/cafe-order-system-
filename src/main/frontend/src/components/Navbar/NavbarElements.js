@@ -6,6 +6,7 @@ export const Nav = styled.nav`
     /* background: ${({ scrollNav }) => (scrollNav ? '#000' : 'transparent')}; */
     background: black;
     height: 80px;
+    width: 100%;
     /* margin-top: -80px; */
     display: flex;
     justify-content: center;
@@ -14,6 +15,7 @@ export const Nav = styled.nav`
     position: sticky;
     top: 0;
     z-index: 10;
+    position: fixed;
 
     @media screen and (max-width: 960px) {
         transition: 0.8s all ease;

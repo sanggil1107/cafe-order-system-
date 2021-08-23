@@ -1,25 +1,46 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { MdClose } from 'react-icons/md';
 
 export const Container = styled.div`
-    min-height: 692px;
+    /* min-height: 692px;
     position: relative;
     bottom: 0;
     left: 0;
     right: 0;
     top: 0;
-    z-index: -2;
+    z-index: 20;
     overflow: hidden;
-    background: white;
-    /* background: linear-gradient(
-        108deg,
-        rgba(1, 147, 86, 1) 0%,
-        rgba(10, 201, 122, 1) 100%
-    ); */
+    background: white; */
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.6);
+    /* background: transparent; */
+    position: fixed;
+    z-index: 999;
+    padding: 0;
+    display: flex;
+    /* display: ${(props) => (props.showModal ? 'flex' : 'none')}; */
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 `;
 
 export const FormWrap = styled.div`
-    height: 100%;
+    width: 400px;
+    height: 300px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    color: red;
+    display: flex;
+    /* grid-template-columns: 1fr 1fr; */
+    position: fixed;
+    /* z-index: 10; */
+    border-radius: 10px;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,13 +77,15 @@ export const FormContent = styled.div`
 
 export const Form = styled.form`
     background: #010101;
-    max-width: 400px;
+    width: 350px;
+    height: 300px;
+    /* max-width: 400px; */
     height: auto;
-    width: 100%;
-    z-index: 1;
+    /* width: 100%; */
+    z-index: 10;
     display: grid;
     margin: 0 auto;
-    padding: 80px 32px;
+    padding: 30px 32px;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 
@@ -74,7 +97,7 @@ export const Form = styled.form`
 export const FormH1 = styled.h1`
     margin-bottom: 40px;
     color: #fff;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 400;
     text-align: center;
 `;
@@ -107,4 +130,20 @@ export const Text = styled.span`
     margin-top: 24px;
     color: #fff;
     font-size: 14px;
+`;
+
+export const CloseModalButton = styled(MdClose)`
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    margin-right: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    padding-left: 320px;
+    z-index: 10;
+    color: orange;
+    left: 0;
+    /* align-items: center; */
+
 `;

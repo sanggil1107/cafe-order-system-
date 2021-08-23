@@ -2,17 +2,19 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
-
+import { Button } from '../ButtonElement';
 
 const Background = styled.div`
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
+    /* background: transparent; */
     position: fixed;
-    z-index: 1000;
+    z-index: 999;
+    padding: 0;
     display: flex;
+    /* display: ${(props) => (props.showModal ? 'flex' : 'none')}; */
     justify-content: center;
     align-items: center;
-    color: red;
     margin: 0;
     top: 0;
     right: 0;
@@ -21,22 +23,21 @@ const Background = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-    width: 800px;
-    height: 300px;
+    width: 1000px;
+    height: 600px;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
     background: #fff;
     color: red;
     display: flex;
     /* grid-template-columns: 1fr 1fr; */
-    position: relative;
-    z-index: 10;
+    position: fixed;
+    /* z-index: 10; */
     border-radius: 10px;
-    /* box-sizing: border-box; */
 `;
 
 const ModalImg = styled.img`
-    width: 100%;
-    height: 100%;
+    width: 334px;
+    height: 350px;
     border-radius: 10px 0 0 10px;
     background: #000;
 `;
@@ -70,55 +71,102 @@ const CloseModalButton = styled(MdClose)`
     height: 32px;
     padding: 0;
     z-index: 10;
+    color: orange;
 `
 
-export const MenuDetail = ({showModal, setShowModal}) => {
+const MenuDetail = ({ lists, setLists, menu, modal }) => {
 
     const modalRef = useRef();
-
     const animation = useSpring({
         config: {
             duraton: 250
         },
-        opacity: showModal ? 1 : 0,
-        transform: showModal ? `translateY(0%)` : `translateY(-100$)`
+        opacity: menu.modal ? 1 : 0,
+        transform: menu.modal ? 'translateY(0%)' : 'translateY(-100$)'
     });
 
-    const closeModal = () => {
-        // if(modalRef.current === e.target) {
-        //     setShowModal(false);
-        // }
-        setShowModal(false);
+    const like = () => {
+        alert('df');
+    }
+
+    const closeModal = (e) => {
+        if (modalRef.current === e.target) {
+            setLists(lists =>
+                lists.map(list =>
+                    list.productId === menu.productId ? { ...list, modal: false } : list
+                )
+            );
+        }
+    };
+
+    const onClose = () => {
+        setLists(lists =>
+            lists.map(list =>
+                list.productId === menu.productId ? { ...list, modal: false } : list
+            )
+        );
+        modal(false);
+
     };
 
     const keyPress = useCallback(e => {
-        if(e.key === 'Escape' && showModal) {
-            setShowModal(false)
+        if (e.key === 'Escape' && menu.modal) {
+            setLists(lists =>
+                lists.map(list =>
+                    list.productId === menu.productId ? { ...list, modal: false } : list
+                )
+            );
         }
-    }, [setShowModal, showModal])
+    }, [setLists, menu.modal])
 
     useEffect(() => {
-        console.log(showModal);
-    });
+        // console.log(modal);
+        document.addEventListener('keydown', keyPress);
+         return () => document.removeEventListener('keydown', keyPress);
+
+
+        
+    }, []);
+
+    useEffect(() => {
+        function handleTouchMove(event) {
+          event.preventDefault(); 
+        }
+        function disableScroll() {
+          document.body.style.overflow = 'hidden';
+          document.querySelector('html').scrollTop = window.scrollY; // dimmed 되기 전 스크롤 위치 고정
+        }
+        window.addEventListener('touchmove', handleTouchMove, { passive: false })
+        window.addEventListener('scroll', disableScroll);
+        
+        return () => {
+          window.removeEventListener('touchmove', handleTouchMove);
+          window.removeEventListener('scroll', disableScroll);
+          document.body.style.overflow = 'visible';
+        }
+      }, []);
 
     return (
         <>
-            {showModal ? (
-                <Background >
+            { menu.modal &&
+                <Background onClick={closeModal}>
                     {/* <animated.div> */}
-                        <ModalWrapper onClick={closeModal}>
-                            {/* <ModalImg src={require('./news_board.jpg')}
-                            alt='camera'/> */}
-                            <ModalContent>
-                                <h1>Are you ready</h1>
-                                <p>Get exclusive access to our next</p>
-                                <button>join now</button>
-                            </ModalContent>
-                            <CloseModalButton aria-label='Close modal' onClick={() => setShowModal(false)}/>
-                        </ModalWrapper>
+                    <ModalWrapper>
+                        <ModalImg src={menu.images}/>
+                        <ModalContent>
+                            <Button onClick={like}>나만의 메뉴</Button>
+                            <h1>{menu.name}</h1>
+                            <p>{menu.description}</p>
+                            
+                        </ModalContent>
+                        <CloseModalButton aria-label='Close modal' onClick={onClose} />
+                    </ModalWrapper>
                     {/* </animated.div> */}
                 </Background>
-            ) : null}
+            }
         </>
-    )
-};
+
+    );
+}
+
+export default MenuDetail;
