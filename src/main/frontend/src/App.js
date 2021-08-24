@@ -7,7 +7,7 @@ import NavBar from './components/Navbar/Navbar';
 import BoardDetail from './components/BoardDetail';
 import BoardWrite from './components/BoardWrite';
 import Menu from './components/Menu/Menu';
-import Signin from './components/Signin/Sginin';
+import Signin from './components/Signin/Signin';
 import Footer from './components/Footer/Footer';
 import Sidebar from './components/Sidebar/Sidebar';
 import News from './components/News/News';
@@ -21,6 +21,7 @@ import Notice from './components/News/Notice';
 import CoffeeMenu from './components/Coffee/CoffeeMenu';
 import CoffeeFinder from './components/Coffee/CoffeeFinder';
 import CoffeeStory from './components/Coffee/CoffeeStory';
+import Up from './components/Signin/SignUp';
 
 const App = () => {
 
@@ -56,6 +57,7 @@ const App = () => {
                     <Route exact path="/news/board" component={BoardMain}></Route>
                     <Route exact path="/news/board/view/:id" component={BoardDetail}></Route>
                     <Route exact path="/news/board/write" component={BoardWrite}></Route>
+                    <Route exact path="/up" component={Up}></Route>
                 </Switch>
                 <Footer />
             </Router>

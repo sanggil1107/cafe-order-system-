@@ -5,7 +5,8 @@ import { animateScroll as scroll } from 'react-scroll';
 import Dropdown from '../Dropdown';
 import CategoryService from '../../service_backend/CategoryService';
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './NavbarElements';
-import Sginin from '../Signin/Sginin';
+import Sginin from '../Signin/Signin';
+import SignUp from '../Signin/SignUp';
 
 const Navbar = ({ toggle }) => {
 
@@ -15,6 +16,7 @@ const Navbar = ({ toggle }) => {
     const [scrollNav, setScrollNav] = useState(false);
     const [mcategory, setMcategory] = useState([]);
     const [signin, setSignin] = useState(false);
+    const [signup, setSignup] = useState(false);
 
     useEffect(() => {
         CategoryService.getMainList().then(res => {
@@ -181,7 +183,7 @@ const Navbar = ({ toggle }) => {
                                     return (
 
                                         <NavItem >
-                                            <NavLinks to='/store'>
+                                            <NavLinks to='/up'>
                                                 {m.name}
                                             </NavLinks>
                                         </NavItem>
@@ -202,8 +204,8 @@ const Navbar = ({ toggle }) => {
                         </NavMenu>
                         <NavBtn>
                             <NavBtnLink onClick={onSignin}>Sign In</NavBtnLink>
-                            {signin && <Sginin open={signin} setOpen={setSignin}/>}
-                            
+                            {signin && <Sginin open={signin} setOpen={setSignin} />}
+                            {signup && <SignUp />}
                         </NavBtn>
                     </NavbarContainer>
                 </Nav>

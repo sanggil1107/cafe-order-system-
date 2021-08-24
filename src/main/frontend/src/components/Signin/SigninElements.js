@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Container = styled.div`
     /* min-height: 692px;
@@ -42,19 +43,27 @@ export const FormWrap = styled.div`
     border-radius: 10px;
     /* height: 100%; */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    
 
     @media screen and (max-width: 400px) {
         height: 80%;
     }
 `;
 
+export const FormI = styled(FontAwesomeIcon)`
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    font-size: 1.1rem;
+    padding: 18px;
+`;
+
+
 export const Icon = styled(Link)`
     margin-left: 32px;
     margin-top: 32px;
     text-decoration: none;
-    color: #fff;
+    color: #010101;
     font-weight: 700;
     font-size: 32px;
 
@@ -69,6 +78,7 @@ export const FormContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 10px;
 
     @media screen and (max-width: 480px) {
         padding: 10px;
@@ -76,7 +86,7 @@ export const FormContent = styled.div`
 `;
 
 export const Form = styled.form`
-    background: #010101;
+    background: #fff;
     width: 350px;
     height: 300px;
     /* max-width: 400px; */
@@ -86,8 +96,9 @@ export const Form = styled.form`
     display: grid;
     margin: 0 auto;
     padding: 30px 32px;
-    border-radius: 4px;
+    border-radius: 14px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    transition: .12s .1s ease-in-out;
 
     @media screen and (max-width: 400px) {
         padding: 32px 32px;
@@ -96,54 +107,97 @@ export const Form = styled.form`
 
 export const FormH1 = styled.h1`
     margin-bottom: 40px;
-    color: #fff;
+    color: #010101;
     font-size: 30px;
     font-weight: 400;
     text-align: center;
 `;
 
-export const FormLabel = styled.label`
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #fff;
+export const FormInputField = styled.div`
+    max-width: 360px;
+    width: 335px;
+    height: 55px;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 .4rem;
 `;
 
 export const FormInput = styled.input`
-    padding: 16px 16px;
-    margin-bottom: 32px;
+    background: none;
+    outline: none;
     border: none;
-    border-radius: 4px;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 1.0rem;
+    color: #333;
+
+    ::placeholder {
+        color: #aaa;
+        font-weight: 600;
+    }
 `;
+
+// export const FormInput = styled.input`
+//     background: none;
+//     outline: none;
+//     border: none;
+//     line-height: 1;
+//     font-weight: 600;
+//     font-size: 1.1rem;
+//     color: #333;
+// `;
 
 export const FormButton = styled.button`
     background: #01bf71;
     padding: 16px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 24px;
     color: #fff;
     font-size: 20px;
     cursor: pointer;
+    margin-top: 20px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    margin-left: 70px;
+    margin-right: 70px;
 `;
 
 export const Text = styled.span`
-    text-align: center;
+    text-align: left;
     margin-top: 24px;
     color: #fff;
     font-size: 14px;
 `;
 
-export const CloseModalButton = styled(MdClose)`
+export const Text1 = styled.p`
+    text-align: right;
+    margin-top: 24px;
+    color: #fff;
+    font-size: 14px;
+    :hover {
+        color: red;
+    }
+`;
+export const CloseButton = styled(MdClose)`
     cursor: pointer;
-    position: relative;
+    position: inherit;
+    display: flex;
     top: 0;
     margin-right: 0;
     right: 0;
     width: 32px;
     height: 32px;
-    padding-left: 320px;
-    z-index: 10;
-    color: orange;
-    left: 0;
-    /* align-items: center; */
-
+    margin-left: auto;
+    z-index: 20;
+    color: black;
+    :not(:no-button) {
+        color: black;
+    }
 `;
