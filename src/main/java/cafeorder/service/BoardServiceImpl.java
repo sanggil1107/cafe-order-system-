@@ -16,11 +16,10 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     BoardRepository boardRepository;
-
+    
     // 리뷰 목록
     @Override
     public List<Board> selectBoardList() throws Exception {
-
         return boardRepository.findAll();
     }
 

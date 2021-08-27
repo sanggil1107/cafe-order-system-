@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @GeneratedValue
+    @Column(name = "user_id")
     private String userId;
 
     @Column(name = "pwd")

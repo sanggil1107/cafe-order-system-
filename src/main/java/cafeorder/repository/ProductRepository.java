@@ -11,5 +11,5 @@ import cafeorder.entity.SubCategory;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer>{
-    List<Product> findAllBySubId(@Param(value = "subId") SubCategory subId);
+    public List<Product> findAllBySubId(@Param(value = "subId") SubCategory subId);
 }
