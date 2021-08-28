@@ -25,23 +25,24 @@ const Signin = ({ open, setOpen }) => {
             [name] : value
         });
 
-        if (name === "userId") {
-            var user_id = e.target.value;
-            UserService.checkId(user_id).then(res => {
-                console.log(res.data);
-                if (res.data) {
-                    setErr('사용 불가능합니다.');
-                }
-                else {
-                    setErr('');
-                }
-            })
+        // 회원가입
+        if (!signin) {            
+            if (name === "userId") {
+                var user_id = e.target.value;
+                UserService.checkId(user_id).then(res => {
+                    console.log(res.data);
+                    if (res.data) {
+                        setErr('사용 불가능합니다.');
+                    }
+                    else {
+                        setErr('');
+                    }
+                })
+            }
         }
-        
     }
 
     const onSigninSubmit = (e) => {
-
         e.preventDefault();
         console.log(user);
         UserService.getUser(user).then(res => {
@@ -57,10 +58,7 @@ const Signin = ({ open, setOpen }) => {
     const onSignupSubmit = (e) => {
         e.preventDefault();
         console.log(user);
-        if (err !== '') {
-
-        }
-        else {
+        if (err === '') {
             UserService.setUser(user).then(res => {
                 alert('회원가입이 완료되었습니다.');
                 setUser({
