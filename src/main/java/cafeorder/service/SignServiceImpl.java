@@ -1,6 +1,7 @@
 package cafeorder.service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +26,27 @@ public class SignServiceImpl implements SignService {
 
     @Override
     public String selectUser(User user) throws Exception {
+        String result;
         User u = signRepository.findByUserIdAndPwd(user.getUserId(), user.getPwd());
         System.out.println(user);
         System.out.println("getUser : " + u);
-        String t = "dd";
-        return t;
+        if (u != null) {
+            result = "로그인 성공";
+        }
+        else {
+            result = "로그인 실패";
+        }
+        return result;
     }   
 
     @Override
-    public Boolean selectUserId(String userid) throws Exception {
-        return true;
+    public Boolean selectUserId(String userId) throws Exception {
+        Optional<User> op = signRepository.findById(userId);
+        if (op.isPresent()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

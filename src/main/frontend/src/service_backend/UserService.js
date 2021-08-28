@@ -9,8 +9,7 @@ class UserService {
     };
 
     getUser(user) {
-        console.log(user);
-        return axios.get(BASE_API_URL + "/signin",null, {
+        return axios.get(BASE_API_URL + "/signin", {
             params: {
                 //user: user
                 userId: user.userId,
@@ -18,6 +17,14 @@ class UserService {
             }
         });
         //return axios.post(BASE_API_URL + "/signin", user);
+    };
+
+    checkId(userid) {
+        return axios.get(BASE_API_URL + "/checkid", {
+            params: {
+                userid: userid
+            }
+        })
     };
 }
 

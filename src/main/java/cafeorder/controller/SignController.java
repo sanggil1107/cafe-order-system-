@@ -28,15 +28,17 @@ public class SignController {
     // @RequestMapping(value = "/signin", method = RequestMethod.POST)
     // public String UserSignin(@RequestBody User user) throws Exception {
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
-    public String UserSignin(User user) throws Exception {
-        System.out.println("로그인");
+    public String UserSignin(@RequestParam("userId") String userId, @RequestParam("pwd") String pwd) throws Exception {
+        User user = new User();
+        user.setUserId(userId);
+        user.setPwd(pwd);
         String result = signService.selectUser(user);
         
         return result;
     }
 
-    @RequestMapping(value = "/idcheck", method = RequestMethod.GET)
-    public Boolean IdChck(@RequestParam("userid") String userid) throws Exception {
-        return signService.selectUserId(userid);
+    @RequestMapping(value = "/checkid", method = RequestMethod.GET)
+    public Boolean CheckId(@RequestParam("userid") String userId) throws Exception {
+        return signService.selectUserId(userId);
     }
 }

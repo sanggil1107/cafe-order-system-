@@ -10,6 +10,7 @@ import UserService from './../../service_backend/UserService';
 const Signin = ({ open, setOpen }) => {
 
     const [signin, setSignin] = useState(true);
+    const [err, setErr] = useState('');
     const [user, setUser] = useState({
         userId: '',
         pwd: ''
@@ -23,14 +24,31 @@ const Signin = ({ open, setOpen }) => {
             ...user,
             [name] : value
         });
+
+        if (name === "userId") {
+            var user_id = e.target.value;
+            UserService.checkId(user_id).then(res => {
+                console.log(res.data);
+                if (res.data) {
+                    setErr('사용 불가능합니다.');
+                }
+                else {
+                    setErr('');
+                }
+            })
+        }
+        
     }
 
     const onSigninSubmit = (e) => {
+
         e.preventDefault();
         console.log(user);
         UserService.getUser(user).then(res => {
-            alert("로그인성공");
-            console.log(res);
+            console.log(res.data);
+            if (res.data === '로그인 성공') {
+                setOpen(false);
+            }
         }).catch(err => {
             console.log(err);
         });
@@ -39,13 +57,22 @@ const Signin = ({ open, setOpen }) => {
     const onSignupSubmit = (e) => {
         e.preventDefault();
         console.log(user);
-        UserService.setUser(user).then(res => {
-            alert('회원가입이 완료되었습니다.');
-            setSignin(false);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        if (err !== '') {
+
+        }
+        else {
+            UserService.setUser(user).then(res => {
+                alert('회원가입이 완료되었습니다.');
+                setUser({
+                    userId: '',
+                    pwd: ''
+                });
+                setSignin(true);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
     }
 
     const onClose = () => {
@@ -93,11 +120,12 @@ const Signin = ({ open, setOpen }) => {
                                             <FormI icon={faUser}></FormI>
                                             <FormInput name='userId' placeholder='아이디를 입력하세요' onChange={onChange} value={userId} required></FormInput>
                                         </FormInputField>
+                                        <span>{err}</span>
                                         <FormInputField>
                                             <FormI icon={faLock}></FormI>
                                             <FormInput name='pwd' type='password' placeholder='비밀번호를 입력하세요' onChange={onChange} value={pwd} required ></FormInput>
                                         </FormInputField>
-                                        <FormButton type='submit' onClick={onSignupSubmit}>Continue</FormButton>
+                                        <FormButton type='submit' onClick={onSignupSubmit}>가입</FormButton>
                                         <Text></Text>
                                     </Form>
                                 </>}

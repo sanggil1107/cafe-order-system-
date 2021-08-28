@@ -7,5 +7,5 @@ import cafeorder.entity.User;
 public interface SignService {
     void insertUser(User user) throws Exception;
     String selectUser(User user) throws Exception;
-    Boolean selectUserId(String userid) throws Exception;
+    Boolean selectUserId(String userId) throws Exception;
 }
