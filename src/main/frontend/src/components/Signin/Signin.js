@@ -47,7 +47,9 @@ const Signin = ({ open, setOpen }) => {
         console.log(user);
         UserService.getUser(user).then(res => {
             console.log(res.data);
-            if (res.data === '로그인 성공') {
+            const token = res.data;
+            if (token === '로그인 성공') {
+                localStorage.setItem('token', JSON.stringify(user));
                 setOpen(false);
             }
         }).catch(err => {

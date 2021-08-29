@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { IconContext } from 'react-icons/lib';
 import { animateScroll as scroll } from 'react-scroll';
 import Dropdown from '../Dropdown';
 import CategoryService from '../../service_backend/CategoryService';
-import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './NavbarElements';
+import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink, NavI } from './NavbarElements';
 import Sginin from '../Signin/Signin';
 import SignUp from '../Signin/SignUp';
 
@@ -162,7 +163,7 @@ const Navbar = ({ toggle }) => {
                                             Menu
                                         </NavLinks> */}
                                             <NavLinks to='/menu' onClick={() => { onClickdropdown('menudropdown') }}>
-                                                {m.name} <i className='fas fa-caret-down'></i>
+                                                {m.name} <NavI icon={faCaretDown}></NavI>
                                             </NavLinks>
                                             {menudropdown && <Dropdown id={m.mainId}/>}
                                         </NavItem>
@@ -173,7 +174,7 @@ const Navbar = ({ toggle }) => {
 
                                         <NavItem onMouseEnter={() => { onMouseEnter('coffeedropdown') }} onMouseLeave={() => { onMouseLeave('coffeedropdown') }}>
                                             <NavLinks to='/coffee' onClick={() => { onClickdropdown('coffeedropdown') }}>
-                                                {m.name} <i className='fas fa-caret-down'></i>
+                                                {m.name} <NavI icon={faCaretDown}></NavI>
                                             </NavLinks>
                                             {coffeedropdown && <Dropdown id={m.mainId}/>}
                                         </NavItem>
@@ -194,7 +195,7 @@ const Navbar = ({ toggle }) => {
 
                                         <NavItem onMouseEnter={() => { onMouseEnter('newsdropdown') }} onMouseLeave={() => { onMouseLeave('newsdropdown') }}>
                                             <NavLinks to='/news' onClick={() => { onClickdropdown('newsdropdown') }}>
-                                                {m.name} <i className='fas fa-caret-down'></i>
+                                                {m.name} <NavI icon={faCaretDown}></NavI>
                                             </NavLinks>
                                             {newsdropdown && <Dropdown id={m.mainId}/>}
                                         </NavItem>
