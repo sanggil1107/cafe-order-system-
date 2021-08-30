@@ -3,7 +3,7 @@ import { FaBars } from 'react-icons/fa';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { IconContext } from 'react-icons/lib';
 import { animateScroll as scroll } from 'react-scroll';
-import Dropdown from '../Dropdown';
+import Dropdown from '../Navbar/Dropdown';
 import CategoryService from '../../service_backend/CategoryService';
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink, NavI } from './NavbarElements';
 import Sginin from '../Signin/Signin';

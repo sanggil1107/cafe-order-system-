@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import BoardService from '../service_backend/BoardService';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Paging from './Paging';
+import BoardService from '../../service_backend/BoardService';
+import Paging from '../Paging/Paging';
 import Board from './Board';
 
 

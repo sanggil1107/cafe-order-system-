@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import Main from './components/Main';
 import Login from './components/Login';
-import BoardMain from './components/BoardMain';
+import BoardMain from './components/Board/BoardMain';
 import NavBar from './components/Navbar/Navbar';
-import BoardDetail from './components/BoardDetail';
-import BoardWrite from './components/BoardWrite';
+import BoardDetail from './components/Board/BoardDetail';
+import BoardWrite from './components/Board/BoardWrite';
 import Menu from './components/Menu/Menu';
 import Signin from './components/Signin/Signin';
 import Footer from './components/Footer/Footer';
@@ -57,7 +57,6 @@ const App = () => {
                     <Route exact path="/news/board" component={BoardMain}></Route>
                     <Route exact path="/news/board/view/:id" component={BoardDetail}></Route>
                     <Route exact path="/news/board/write" component={BoardWrite}></Route>
-                    <Route exact path="/up" component={Up}></Route>
                 </Switch>
                 <Footer />
             </Router>
