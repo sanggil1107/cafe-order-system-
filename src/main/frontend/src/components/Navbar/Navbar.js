@@ -7,7 +7,7 @@ import Dropdown from '../Navbar/Dropdown';
 import CategoryService from '../../service_backend/CategoryService';
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink, NavI } from './NavbarElements';
 import Sginin from '../Signin/Signin';
-import SignUp from '../Signin/SignUp';
+
 
 const Navbar = ({ toggle }) => {
 
@@ -18,32 +18,45 @@ const Navbar = ({ toggle }) => {
     const [mcategory, setMcategory] = useState([]);
     const [signin, setSignin] = useState(false);
     const [signup, setSignup] = useState(false);
+    const [token, setToken] = useState(false);
 
     useEffect(() => {
+
         CategoryService.getMainList().then(res => {
             setMcategory(res.data);
             console.log(res.data);
         });
         window.addEventListener('scroll', changeNav);
 
-    }, []);
+    }, [token]);
 
     useEffect(() => {
-        if(signin) {
+        if (localStorage.getItem('token') != null) {
+            setToken(true);
+        }
+        else {
+            setToken(false);
+        }
+        if (signin) {
             document.body.style.cssText = `
               position: fixed; 
               top: -${window.scrollY}px;
               width: 100%;`;
             return () => {
-              const scrollY = document.body.style.top;
-              document.body.style.cssText = '';
-              window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+                const scrollY = document.body.style.top;
+                document.body.style.cssText = '';
+                window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
             };
         }
-      }, [signin]);
+    }, [signin]);
 
-    const onSignin = () =>{
+    const onSignin = () => {
         setSignin(true);
+    }
+
+    const onSignout = () => {
+        localStorage.removeItem('token');
+        setToken(false)
     }
 
     const changeNav = () => {
@@ -165,7 +178,7 @@ const Navbar = ({ toggle }) => {
                                             <NavLinks to='/menu' onClick={() => { onClickdropdown('menudropdown') }}>
                                                 {m.name} <NavI icon={faCaretDown}></NavI>
                                             </NavLinks>
-                                            {menudropdown && <Dropdown id={m.mainId}/>}
+                                            {menudropdown && <Dropdown id={m.mainId} />}
                                         </NavItem>
                                     )
                                 }
@@ -176,7 +189,7 @@ const Navbar = ({ toggle }) => {
                                             <NavLinks to='/coffee' onClick={() => { onClickdropdown('coffeedropdown') }}>
                                                 {m.name} <NavI icon={faCaretDown}></NavI>
                                             </NavLinks>
-                                            {coffeedropdown && <Dropdown id={m.mainId}/>}
+                                            {coffeedropdown && <Dropdown id={m.mainId} />}
                                         </NavItem>
                                     )
                                 }
@@ -197,16 +210,24 @@ const Navbar = ({ toggle }) => {
                                             <NavLinks to='/news' onClick={() => { onClickdropdown('newsdropdown') }}>
                                                 {m.name} <NavI icon={faCaretDown}></NavI>
                                             </NavLinks>
-                                            {newsdropdown && <Dropdown id={m.mainId}/>}
+                                            {newsdropdown && <Dropdown id={m.mainId} />}
                                         </NavItem>
                                     )
                                 }
                             })}
                         </NavMenu>
                         <NavBtn>
-                            <NavBtnLink onClick={onSignin}>Sign In</NavBtnLink>
-                            {signin && <Sginin open={signin} setOpen={setSignin} />}
-                            {signup && <SignUp />}
+                            {token ?
+                                <>
+                                    <NavLinks to='/mypage'>마이페이지</NavLinks>
+                                    <NavLinks onClick={onSignout}>로그아웃</NavLinks>
+                                </>
+                                :
+                                <>
+                                    <NavLinks onClick={onSignin}>Sign In</NavLinks>
+                                    {signin && <Sginin open={signin} setOpen={setSignin} />}
+                                </>
+                            }
                         </NavBtn>
                     </NavbarContainer>
                 </Nav>

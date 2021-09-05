@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import { Button } from '../ButtonElement';
+import withAuth from '../withAuth';
 
 const Background = styled.div`
     box-sizing: border-box;
@@ -23,8 +24,8 @@ const Background = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-    width: 1000px;
-    height: 600px;
+    width: 900px;
+    height: 530px;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
     background: #fff;
     color: red;
@@ -36,16 +37,18 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalImg = styled.img`
-    width: 334px;
-    height: 350px;
+    width: 450px;
+    height: 500px;
     border-radius: 10px 0 0 10px;
-    background: #000;
+    padding: 16px;
+    justify-content: center;
 `;
 
 const ModalContent = styled.div`
     display: flex;
+    padding: 16px;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     line-height: 1.8;
     color: blue;
@@ -59,6 +62,7 @@ const ModalContent = styled.div`
         background: #141414;
         color: #fff;
         border: none;
+        align-items: flex-end;
     }
 `;
 
@@ -74,8 +78,9 @@ const CloseModalButton = styled(MdClose)`
     color: orange;
 `
 
-const MenuDetail = ({ lists, setLists, menu, modal }) => {
+const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
 
+    const [token1, setToken1] = useState(false);
     const modalRef = useRef();
     const animation = useSpring({
         config: {
@@ -85,8 +90,45 @@ const MenuDetail = ({ lists, setLists, menu, modal }) => {
         transform: menu.modal ? 'translateY(0%)' : 'translateY(-100$)'
     });
 
+    useEffect(() => {
+        if (token != null) {
+            setToken1(true);
+        }
+        else {
+            setToken1(false);
+        }
+    }, [token]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', keyPress);
+         return () => document.removeEventListener('keydown', keyPress);
+    }, []);
+
+    useEffect(() => {
+        function handleTouchMove(event) {
+          event.preventDefault(); 
+        }
+        function disableScroll() {
+          document.body.style.overflow = 'hidden';
+          document.querySelector('html').scrollTop = window.scrollY; // dimmed 되기 전 스크롤 위치 고정
+        }
+        window.addEventListener('touchmove', handleTouchMove, { passive: false })
+        window.addEventListener('scroll', disableScroll);
+        
+        return () => {
+          window.removeEventListener('touchmove', handleTouchMove);
+          window.removeEventListener('scroll', disableScroll);
+          document.body.style.overflow = 'visible';
+        }
+      }, []);
+
     const like = () => {
-        alert('df');
+        if(token) {
+            alert('ㅇㅋ')
+        }
+        else {
+            alert('로그인 후 이용 부탁드립니다.')
+        }
     }
 
     const closeModal = (e) => {
@@ -119,33 +161,6 @@ const MenuDetail = ({ lists, setLists, menu, modal }) => {
         }
     }, [setLists, menu.modal])
 
-    useEffect(() => {
-        // console.log(modal);
-        document.addEventListener('keydown', keyPress);
-         return () => document.removeEventListener('keydown', keyPress);
-
-
-        
-    }, []);
-
-    useEffect(() => {
-        function handleTouchMove(event) {
-          event.preventDefault(); 
-        }
-        function disableScroll() {
-          document.body.style.overflow = 'hidden';
-          document.querySelector('html').scrollTop = window.scrollY; // dimmed 되기 전 스크롤 위치 고정
-        }
-        window.addEventListener('touchmove', handleTouchMove, { passive: false })
-        window.addEventListener('scroll', disableScroll);
-        
-        return () => {
-          window.removeEventListener('touchmove', handleTouchMove);
-          window.removeEventListener('scroll', disableScroll);
-          document.body.style.overflow = 'visible';
-        }
-      }, []);
-
     return (
         <>
             { menu.modal &&
@@ -169,4 +184,4 @@ const MenuDetail = ({ lists, setLists, menu, modal }) => {
     );
 }
 
-export default MenuDetail;
+export default withAuth(MenuDetail);

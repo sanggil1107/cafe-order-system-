@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dropdown from '../Dropdown';
+import Dropdown from '../Navbar/Dropdown';
 import { SidebarContainer, Icon, CloseIcon, SidebarWrapper, SideBtnWrap, SidebarLink, SidebarRoute, SidebarMenu } from './SidebarElements';
  
 const Sidebar = ({ isOpen, toggle }) => {

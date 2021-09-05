@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ServicesContainer, ServicesH1, ServicesWrapper, ServicesCard, ServicesIcon, ServicesH2 } from './../Services/ServicesElements';
+import { ServicesContainer, ServicesH1, ServicesWrapper, ServicesCard, ServicesIcon, ServicesH2 } from './ServicesElements';
 import ProductService from '../../service_backend/ProductService';
 import MenuDetail from './MenuDetail';
 

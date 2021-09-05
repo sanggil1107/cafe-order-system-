@@ -140,15 +140,6 @@ export const FormInput = styled.input`
     }
 `;
 
-// export const FormInput = styled.input`
-//     background: none;
-//     outline: none;
-//     border: none;
-//     line-height: 1;
-//     font-weight: 600;
-//     font-size: 1.1rem;
-//     color: #333;
-// `;
 
 export const FormButton = styled.button`
     background: #01bf71;
@@ -164,7 +155,6 @@ export const FormButton = styled.button`
     justify-content: center;
     align-items: center;
     position: relative;
-
     margin-left: 70px;
     margin-right: 70px;
 `;
@@ -185,6 +175,11 @@ export const Text1 = styled.p`
         color: red;
     }
 `;
+
+export const FormErr = styled.span`
+
+`
+
 export const CloseButton = styled(MdClose)`
     cursor: pointer;
     position: inherit;

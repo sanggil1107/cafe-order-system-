@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import Main from './components/Main';
-import Login from './components/Login';
 import BoardMain from './components/Board/BoardMain';
 import NavBar from './components/Navbar/Navbar';
 import BoardDetail from './components/Board/BoardDetail';
@@ -21,7 +20,7 @@ import Notice from './components/News/Notice';
 import CoffeeMenu from './components/Coffee/CoffeeMenu';
 import CoffeeFinder from './components/Coffee/CoffeeFinder';
 import CoffeeStory from './components/Coffee/CoffeeStory';
-import Up from './components/Signin/SignUp';
+import Mypage from './components/Mypage';
 
 const App = () => {
 
@@ -40,7 +39,6 @@ const App = () => {
                 <Switch>
                     {/* exact?? */}
                     <Route exact path="/" component={Main}></Route>
-                    <Route exact path="/login" component={Login}></Route>
                     <Route exact path="/signin" component={Signin}></Route>
                     <Route exact path="/menu" component={Menu}></Route>
                     <Route exact path="/menu/food_menu" component={FoodMenu}></Route>
@@ -57,6 +55,7 @@ const App = () => {
                     <Route exact path="/news/board" component={BoardMain}></Route>
                     <Route exact path="/news/board/view/:id" component={BoardDetail}></Route>
                     <Route exact path="/news/board/write" component={BoardWrite}></Route>
+                    <Route exact path="/mypage" component={Mypage}></Route>
                 </Switch>
                 <Footer />
             </Router>

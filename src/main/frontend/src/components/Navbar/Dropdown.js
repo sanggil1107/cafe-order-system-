@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // imr
 import { Link } from 'react-router-dom';
 import './Dropdown.css';
-import CategoryService from '../service_backend/CategoryService';
+import CategoryService from '../../service_backend/CategoryService';
 
 const Dropdown = ({id}) => {
 

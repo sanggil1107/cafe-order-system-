@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 function withAuth(Component) {
     function WrappedComponent(props) {
-        const token = localStorage.getItem('token');
+        const token_data = localStorage.getItem('token');
+        // const [token, setToken] = useState(false);
 
-        if (token == null) {
-            return '로그인';
-        }
-        return <Component {...props} token={token} />;
+        // if (token_data == null) {
+        //     setToken(false);
+        // }
+        // else {
+        //     setToken(true);
+        // }
+        return <Component {...props} token={token_data} />;
     }
 
     WrappedComponent.displayName = `withAuth(${Component.name})`;

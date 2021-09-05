@@ -16,6 +16,11 @@ p {margin: 0; padding: 0;}
 ul {margin: 0;}
 
 input {vertical-align: middle;}
+input:-webkit-autofill:disabled, 
+input:-internal-autofill-selected {
+  background-color: #060301!important;
+  /* color: #f0eef3!important; */
+}
 input:focus {outline: 0;}
 caption {display: none; width: 0; height: 0; margin-top: -1px; overflow: hidden; visibility: hidden; font-size: 0; line-height: 0;}
 

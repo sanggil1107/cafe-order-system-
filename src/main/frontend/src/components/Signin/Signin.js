@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Form, FormButton, FormContent, FormH1, FormInput, FormLabel, FormWrap, Icon, Text, CloseButton, FormInputField, FormI, Text1 } from './SigninElements';
+import { Container, Form, FormButton, FormContent, FormH1, FormInput, FormWrap, Text, CloseButton, FormInputField, FormI, FormErr } from './SigninElements';
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import './../../service_backend/UserService';
-import SignUp from './SignUp';
 import { Button } from 'react-scroll';
 import UserService from './../../service_backend/UserService';
 
@@ -10,7 +9,7 @@ import UserService from './../../service_backend/UserService';
 const Signin = ({ open, setOpen }) => {
 
     const [signin, setSignin] = useState(true);
-    const [err, setErr] = useState('');
+    const [err, setErr] = useState(' ');
     const [user, setUser] = useState({
         userId: '',
         pwd: ''
@@ -52,6 +51,9 @@ const Signin = ({ open, setOpen }) => {
                 localStorage.setItem('token', JSON.stringify(user));
                 setOpen(false);
             }
+            else {
+                setErr('아이디 혹은 비밀번호가 맞지 않습니다.')
+            }
         }).catch(err => {
             console.log(err);
         });
@@ -80,6 +82,7 @@ const Signin = ({ open, setOpen }) => {
     }
 
     const onSignup = () => {
+        setErr('');
         setSignin(false);
         setUser({
             userId: '',
@@ -100,13 +103,14 @@ const Signin = ({ open, setOpen }) => {
                                         <FormH1>로그인</FormH1>
                                         <FormInputField>
                                             <FormI icon={faUser}></FormI>
-                                            <FormInput name='userId' placeholder='아이디를 입력하세요' onChange={onChange} value={userId} required></FormInput>
+                                            <FormInput name='userId' placeholder='아이디를 입력하세요' onChange={onChange} value={userId} autoComplete="off" required></FormInput>
                                         </FormInputField>
                                         <FormInputField>
                                             <FormI icon={faLock}></FormI>
                                             <FormInput name='pwd' type='password' placeholder='비밀번호를 입력하세요' onChange={onChange} value={pwd} required></FormInput>
                                         </FormInputField>
                                         <FormButton type='submit' onClick={onSigninSubmit}>Continue</FormButton>
+                                        <FormErr>{err}</FormErr>
                                         <Text>Forgot password</Text>
                                         <button onClick={onSignup}>회원가입</button>
                                     </Form>
@@ -118,9 +122,9 @@ const Signin = ({ open, setOpen }) => {
                                         <FormH1>회원가입</FormH1>
                                         <FormInputField>
                                             <FormI icon={faUser}></FormI>
-                                            <FormInput name='userId' placeholder='아이디를 입력하세요' onChange={onChange} value={userId} required></FormInput>
+                                            <FormInput name='userId' placeholder='아이디를 입력하세요' onChange={onChange} value={userId} autoComplete="off" required></FormInput>
                                         </FormInputField>
-                                        <span>{err}</span>
+                                        <FormErr>{err}</FormErr>
                                         <FormInputField>
                                             <FormI icon={faLock}></FormI>
                                             <FormInput name='pwd' type='password' placeholder='비밀번호를 입력하세요' onChange={onChange} value={pwd} required ></FormInput>
