@@ -1,82 +1,10 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
-import { MdClose } from 'react-icons/md';
 import { Button } from '../ButtonElement';
 import withAuth from '../withAuth';
+import { Background, ModalWrapper, ModalImg, ModalContent, Modaldiv, Modalh4, Modalp, ModalFieldset, Modalviewinfo, Modalheadinfo, Modalmaininfo, Modalul1, Modalul2, Modalil, Modaldl, Modaldt, Modaldd, Modalbutton, CloseModalButton } from './MenuDetailElements';
 
-const Background = styled.div`
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.6);
-    /* background: transparent; */
-    position: fixed;
-    z-index: 999;
-    padding: 0;
-    display: flex;
-    /* display: ${(props) => (props.showModal ? 'flex' : 'none')}; */
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-`;
-
-const ModalWrapper = styled.div`
-    width: 900px;
-    height: 530px;
-    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-    background: #fff;
-    color: red;
-    display: flex;
-    /* grid-template-columns: 1fr 1fr; */
-    position: fixed;
-    /* z-index: 10; */
-    border-radius: 10px;
-`;
-
-const ModalImg = styled.img`
-    width: 450px;
-    height: 500px;
-    border-radius: 10px 0 0 10px;
-    padding: 16px;
-    justify-content: center;
-`;
-
-const ModalContent = styled.div`
-    display: flex;
-    padding: 16px;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    line-height: 1.8;
-    color: blue;
-
-    p {
-        margin-bottom: 1rem;
-    }
-
-    button {
-        padding: 10px 24px;
-        background: #141414;
-        color: #fff;
-        border: none;
-        align-items: flex-end;
-    }
-`;
-
-const CloseModalButton = styled(MdClose)`
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    z-index: 10;
-    color: orange;
-`
 
 const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
 
@@ -169,10 +97,59 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
                     <ModalWrapper>
                         <ModalImg src={menu.images}/>
                         <ModalContent>
-                            <Button onClick={like}>나만의 메뉴</Button>
-                            <h1>{menu.name}</h1>
-                            <p>{menu.description}</p>
+                            <Modaldiv>
+                                <Modalbutton onClick={like}>나만의 메뉴로 등록</Modalbutton>
+                                <Modalh4>{menu.name}</Modalh4>
+                                <Modalp>{menu.description}</Modalp>
+                                <ModalFieldset>
+                                    <Modalviewinfo>
+                                        <Modalheadinfo>제품 영양 정보</Modalheadinfo>
+                                        <Modalmaininfo>
+                                            <Modalul1>
+                                                <Modalil>
+                                                    <Modaldl>
+                                                        <Modaldt>1회 제공량(kcal)</Modaldt>
+                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                    </Modaldl>
+                                                </Modalil>
+                                                <Modalil>
+                                                    <Modaldl>
+                                                        <Modaldt>포화지방(g)</Modaldt>
+                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                    </Modaldl>
+                                                </Modalil>
+                                                <Modalil>
+                                                    <Modaldl>
+                                                        <Modaldt>나트륨(g)</Modaldt>
+                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                    </Modaldl>
+                                                </Modalil>
+                                            </Modalul1>
+                                            <Modalul2>
+                                                <Modalil>
+                                                    <Modaldl>
+                                                        <Modaldt>단백질(mg)</Modaldt>
+                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                    </Modaldl>
+                                                </Modalil>
+                                                <Modalil>
+                                                    <Modaldl>
+                                                        <Modaldt>당류(g)</Modaldt>
+                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                    </Modaldl>
+                                                </Modalil>
+                                                <Modalil>
+                                                    <Modaldl>
+                                                        <Modaldt>카페인(mg)</Modaldt>
+                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                    </Modaldl>
+                                                </Modalil>
+                                            </Modalul2>
+                                        </Modalmaininfo>
+                                    </Modalviewinfo>
+                                </ModalFieldset>
                             
+                            </Modaldiv>
                         </ModalContent>
                         <CloseModalButton aria-label='Close modal' onClick={onClose} />
                     </ModalWrapper>
