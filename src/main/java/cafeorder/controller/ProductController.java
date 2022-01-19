@@ -40,6 +40,12 @@ public class ProductController {
         return productService.FoodList();
     }
 
+    // 커피 조회
+    @RequestMapping(value = "/coffee", method = RequestMethod.GET)
+    public List<Product> CoffeeList(Model model) throws Exception {
+        return productService.CoffeeList();
+    }
+
     // 제품 상세정보(공통) 
     public Product ProductDetail(@RequestParam("productId") int productId) throws Exception {
         return null;        

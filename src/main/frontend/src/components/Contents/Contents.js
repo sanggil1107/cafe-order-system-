@@ -7,7 +7,7 @@ const Contents = ({ lightBg, imgStart, topLine, lightText, title, headLine, dark
         <>
             <ContentsContainer lightBg={lightBg} bgImg={img}>
                 <div>
-                    <Img src={img}></Img>
+ 
                 
                 <ContentsWrapper>
                     <ContentsRow imgStart={imgStart}>
@@ -32,10 +32,7 @@ const Contents = ({ lightBg, imgStart, topLine, lightText, title, headLine, dark
                             </TextWrapper>
                         </Column1>
                         <Column2>
-                            <ImgWrap>
-                                <Img src={img} alt={alt} />
-
-                            </ImgWrap>
+                          
                         </Column2>
                     </ContentsRow>
                 </ContentsWrapper>

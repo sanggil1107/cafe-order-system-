@@ -115,13 +115,13 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
                                                 <Modalil>
                                                     <Modaldl>
                                                         <Modaldt>포화지방(g)</Modaldt>
-                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                        <Modaldd>{menu.fat}</Modaldd>
                                                     </Modaldl>
                                                 </Modalil>
                                                 <Modalil>
                                                     <Modaldl>
                                                         <Modaldt>나트륨(g)</Modaldt>
-                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                        <Modaldd>{menu.sodium}</Modaldd>
                                                     </Modaldl>
                                                 </Modalil>
                                             </Modalul1>
@@ -129,19 +129,19 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
                                                 <Modalil>
                                                     <Modaldl>
                                                         <Modaldt>단백질(mg)</Modaldt>
-                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                        <Modaldd>{menu.protein}</Modaldd>
                                                     </Modaldl>
                                                 </Modalil>
                                                 <Modalil>
                                                     <Modaldl>
                                                         <Modaldt>당류(g)</Modaldt>
-                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                        <Modaldd>{menu.sugars}</Modaldd>
                                                     </Modaldl>
                                                 </Modalil>
                                                 <Modalil>
                                                     <Modaldl>
                                                         <Modaldt>카페인(mg)</Modaldt>
-                                                        <Modaldd>{menu.kcal}</Modaldd>
+                                                        <Modaldd>{menu.caffeine}</Modaldd>
                                                     </Modaldl>
                                                 </Modalil>
                                             </Modalul2>

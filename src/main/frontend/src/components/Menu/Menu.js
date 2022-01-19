@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import Contents from '../Contents/Contents';
 import { DrinkMenu, FoodMenu, ProductMenu } from '../Contents/ContentsData';
 import ScrollToTop from '../ScrollToTop';
-
+import { Menudiv } from './MenuElements';
+ 
 const Menu = () => {
 
     const { pathname } = useLocation();
@@ -17,12 +18,12 @@ const Menu = () => {
     }, []);
 
     return (
-        <>
+        <Menudiv>
             <ScrollToTop />
             <Contents {...FoodMenu}/>
             <Contents {...DrinkMenu}/>
             <Contents {...ProductMenu}/>
-        </>
+        </Menudiv>
     );
 }
 

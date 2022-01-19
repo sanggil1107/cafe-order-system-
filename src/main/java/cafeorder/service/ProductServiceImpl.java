@@ -40,6 +40,13 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllBySubId(subId);
     }
 
+    // 커피 조회
+    @Override
+    public List<Product> CoffeeList() throws Exception {
+        SubCategory subId = subCategoryRepository.getById(4);
+        return productRepository.findAllBySubId(subId);
+    }
+
     @Override
     public Product ProductDetail(int prodcutId) throws Exception {
         return null;

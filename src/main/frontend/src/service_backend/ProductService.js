@@ -19,6 +19,10 @@ class ProductService {
         return axios.get(BASE_API_URL + "/food");
     };
 
+    // 커피 조회
+    getCoffeeList() {
+        return axios.get(BASE_API_URL + "/coffee");
+    };
 }
 
 export default new ProductService();
