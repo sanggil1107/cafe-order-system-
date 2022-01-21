@@ -19,6 +19,7 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
     });
 
     useEffect(() => {
+
         if (token != null) {
             setToken1(true);
         }
@@ -55,7 +56,7 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
             alert('ㅇㅋ')
         }
         else {
-            alert('로그인 후 이용 부탁드립니다.')
+            alert('로그인 후 이용 부탁 드립니다.')
         }
     }
 
