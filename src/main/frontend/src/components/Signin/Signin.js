@@ -47,7 +47,7 @@ const Signin = ({ open, setOpen }) => {
         UserService.getUser(user).then(res => {
             console.log(res.data);
             const token = res.data;
-            if (token === '로그인 성공') {
+            if (token === 'success') {
                 localStorage.setItem('token', JSON.stringify(user));
                 setOpen(false);
             }
@@ -62,7 +62,11 @@ const Signin = ({ open, setOpen }) => {
     const onSignupSubmit = (e) => {
         e.preventDefault();
         console.log(user);
-        if (err === '') {
+        
+        if(user.userId === '' || user.pwd === '') {
+            alert('필수 입력값을 확인해주세요.');
+        }
+        else if (err === '') {
             UserService.setUser(user).then(res => {
                 alert('회원가입이 완료되었습니다.');
                 setUser({

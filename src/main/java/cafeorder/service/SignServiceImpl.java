@@ -31,10 +31,10 @@ public class SignServiceImpl implements SignService {
         System.out.println(user);
         System.out.println("getUser : " + u);
         if (u != null) {
-            result = "로그인 성공";
+            result = "success";
         }
         else {
-            result = "로그인 실패";
+            result = "fail";
         }
         return result;
     }   
