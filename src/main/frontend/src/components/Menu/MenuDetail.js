@@ -2,14 +2,22 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { Button } from '../ButtonElement';
+import '../../service_backend/LikeService'
 import withAuth from '../withAuth';
 import { Background, ModalWrapper, ModalImg, ModalContent, Modaldiv, Modalh4, Modalp, ModalFieldset, Modalviewinfo, Modalheadinfo, Modalmaininfo, Modalul1, Modalul2, Modalil, Modaldl, Modaldt, Modaldd, Modalbutton, CloseModalButton } from './MenuDetailElements';
+import LikeService from '../../service_backend/LikeService';
 
 
 const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
 
     const [token1, setToken1] = useState(false);
+    const tokenvalue = localStorage.getItem('token');
     const modalRef = useRef();
+    const [likeitem, setLikeitem] = useState({
+        userId: '',
+        productId: 0,
+        likeyn: 'Y'
+    });
     const animation = useSpring({
         config: {
             duraton: 250
@@ -34,6 +42,14 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
     }, []);
 
     useEffect(() => {
+        setLikeitem({
+            ...likeitem,
+            userId: tokenvalue,
+            productId: menu.productId
+        });
+    }, [menu.productId]);
+
+    useEffect(() => {
         function handleTouchMove(event) {
           event.preventDefault(); 
         }
@@ -52,13 +68,22 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
       }, []);
 
     const like = () => {
+    
+        // console.log(likeitem);
+
         if(token) {
-            alert('ㅇㅋ')
+            LikeService.setLike(likeitem).then(res => {
+
+            })
+            .catch(err => {
+                console.log(err);
+            });
         }
         else {
             alert('로그인 후 이용 부탁 드립니다.')
         }
-    }
+    };
+
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {

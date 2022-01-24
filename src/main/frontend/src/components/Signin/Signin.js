@@ -48,7 +48,8 @@ const Signin = ({ open, setOpen }) => {
             console.log(res.data);
             const token = res.data;
             if (token === 'success') {
-                localStorage.setItem('token', JSON.stringify(user));
+                //localStorage.setItem('token', JSON.stringify(user));
+                localStorage.setItem('token', user.userId);
                 setOpen(false);
             }
             else {

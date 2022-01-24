@@ -9,7 +9,7 @@ import cafeorder.repository.LikeRepository;
 public class LikeServiceImpl implements LikeService {
 
 	@Autowired
-	private LikeRepository likeRepository;
+	LikeRepository likeRepository;
 	
 	@Override
 	public void InsertLike() throws Exception {
