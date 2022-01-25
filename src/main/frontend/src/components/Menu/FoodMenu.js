@@ -9,6 +9,7 @@ const FoodMenu = () => {
     const [modal, setModal] = useState(false);
 
     const openModal = (i) => {
+  
         setFoodList(foodList =>
             foodList.map(list =>
                 list.productId === i ? { ...list, modal: true } : list
@@ -25,7 +26,7 @@ const FoodMenu = () => {
 
             lists.map((list, i) => (
                 temp.push({
-                    productId: list.productId - 1,
+                    productId: list.productId,
                     name: list.name,
                     description: list.description,
                     caffeine: list.caffeine,

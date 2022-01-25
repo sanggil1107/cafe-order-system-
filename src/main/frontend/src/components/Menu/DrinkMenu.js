@@ -26,7 +26,7 @@ const DrinkMenu = () => {
            
             lists.map((list, i) => (
                 temp.push({
-                    productId: list.productId - 1,
+                    productId: list.productId,
                     name: list.name,
                     description: list.description,
                     caffeine: list.caffeine,
