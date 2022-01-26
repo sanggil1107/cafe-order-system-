@@ -9,10 +9,12 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "tb_likemenu")
 @Data
+//@NoArgsConstructor
 public class LikeMenu {
 	
 	@EmbeddedId

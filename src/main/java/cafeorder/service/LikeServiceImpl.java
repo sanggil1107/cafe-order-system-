@@ -3,6 +3,7 @@ package cafeorder.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cafeorder.entity.LikeMenu;
 import cafeorder.repository.LikeRepository;
 
 @Service
@@ -12,7 +13,7 @@ public class LikeServiceImpl implements LikeService {
 	LikeRepository likeRepository;
 	
 	@Override
-	public void InsertLike() throws Exception {
-		
+	public void InsertLike(LikeMenu likemenu) throws Exception {
+		likeRepository.save(likemenu);
 	}
 }

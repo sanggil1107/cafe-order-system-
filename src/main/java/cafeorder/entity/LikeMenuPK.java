@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class LikeMenuPK implements Serializable {
 
 	//@ManyToOne(fetch = FetchType.EAGER)

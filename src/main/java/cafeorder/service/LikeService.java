@@ -1,5 +1,7 @@
 package cafeorder.service;
 
+import cafeorder.entity.LikeMenu;
+
 public interface LikeService {
-	void InsertLike() throws Exception;
+	void InsertLike(LikeMenu likemenu) throws Exception;
 }

@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cafeorder.entity.LikeMenu;
 import cafeorder.entity.LikeMenuPK;
+import cafeorder.entity.Product;
+import cafeorder.entity.User;
+import cafeorder.repository.ProductRepository;
+import cafeorder.repository.SignRepository;
 import cafeorder.service.LikeService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -20,6 +24,12 @@ public class LikeController {
 
 	@Autowired
 	private LikeService likeService;
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@Autowired
+	private SignRepository signRepository;
 	
 //	@RequestMapping(value = "/like", method = RequestMethod.POST)
 //	public void InsertLike(@RequestBody LikeMenuPK pk) throws Exception {
@@ -36,15 +46,19 @@ public class LikeController {
 	
 	@RequestMapping(value = "/like", method = RequestMethod.POST)
 	public void InsertLike(@RequestBody Map<String, String> m) throws Exception {
-//		System.out.println("like :" + m.get("userId"));
-//		System.out.println("like :" + m.get("productId").getClass().getName());
-//		System.out.println("like :" + m.get("likeyn"));
 		LikeMenuPK pk = new LikeMenuPK(m.get("userId"), Integer.parseInt(m.get("productId")));
 		LikeMenu likemenu = new LikeMenu();
 		likemenu.setPk(pk);
 		likemenu.setLikeyn(m.get("likeyn"));
-		System.out.println("like : " + likemenu);
-		likeService.InsertLike();
+
+		User user = signRepository.getById(m.get("userId"));
+		Product product = productRepository.getById(Integer.parseInt(m.get("productId")));
+		System.out.println("user :" + user);
+		System.out.println("product :" + product);
+		likemenu.setUser(user);
+		likemenu.setProduct(product);
+		System.out.println("like2 : " + likemenu);
+		likeService.InsertLike(likemenu);
 	}
 		
 }

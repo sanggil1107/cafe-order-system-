@@ -125,6 +125,7 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
                         <ModalContent>
                             <Modaldiv>
                                 <Modalbutton onClick={like}>나만의 메뉴로 등록</Modalbutton>
+                                <Modalh4>{menu.productId}</Modalh4>
                                 <Modalh4>{menu.name}</Modalh4>
                                 <Modalp>{menu.description}</Modalp>
                                 <ModalFieldset>
