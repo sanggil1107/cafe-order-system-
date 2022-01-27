@@ -44,6 +44,11 @@ public class LikeController {
 //		likeService.InsertLike();
 //	}
 	
+	@RequestMapping(value = "/checklike", method = RequestMethod.GET)
+	public Boolean CheckLike(@RequestParam("userId") String userId, @RequestParam("productId") int productId) throws Exception {
+		return likeService.selectLike(userId, productId);
+	}
+	
 	@RequestMapping(value = "/like", method = RequestMethod.POST)
 	public void InsertLike(@RequestBody Map<String, String> m) throws Exception {
 		LikeMenuPK pk = new LikeMenuPK(m.get("userId"), Integer.parseInt(m.get("productId")));
@@ -58,6 +63,21 @@ public class LikeController {
 		likemenu.setUser(user);
 		likemenu.setProduct(product);
 		System.out.println("like2 : " + likemenu);
+		likeService.InsertLike(likemenu);
+	}
+	
+	@RequestMapping(value = "/updatelike", method = RequestMethod.PUT)
+	public void UpdateLike(@RequestBody Map<String, String> m) throws Exception {
+		LikeMenuPK pk = new LikeMenuPK(m.get("userId"), Integer.parseInt(m.get("productID")));
+		LikeMenu likemenu = new LikeMenu();
+		likemenu.setPk(pk);
+		likemenu.setLikeyn(m.get("likeyn"));
+		
+		User user = signRepository.getById(m.get("userId"));
+		Product product = productRepository.getById(Integer.parseInt(m.get("productId")));
+		likemenu.setUser(user);
+		likemenu.setProduct(product);
+		
 		likeService.InsertLike(likemenu);
 	}
 		

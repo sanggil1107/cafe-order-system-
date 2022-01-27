@@ -72,12 +72,28 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
         // console.log(likeitem);
 
         if(token) {
-            LikeService.setLike(likeitem).then(res => {
+            LikeService.checkLike(likeitem).then(res => {
+                if(res.data) {
+                    LikeService.updateLike(likeitem).then(res => {
+                        
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                }
+                else {
+                    LikeService.setLike(likeitem).then(res => {
 
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                }
             })
             .catch(err => {
                 console.log(err);
             });
+            
         }
         else {
             alert('로그인 후 이용 부탁 드립니다.')
