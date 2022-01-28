@@ -18,6 +18,11 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
         productId: 0,
         likeyn: 'Y'
     });
+    const [test, setTest] = useState({
+        userId: '',
+        productId: 0,
+        likeyn: 'Y'
+    });
     const animation = useSpring({
         config: {
             duraton: 250
@@ -47,6 +52,11 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
             userId: tokenvalue,
             productId: menu.productId
         });
+        setTest({
+            ...test,
+            userId: tokenvalue,
+            productId: menu.productId
+        });
     }, [menu.productId]);
 
     useEffect(() => {
@@ -72,10 +82,25 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
         // console.log(likeitem);
 
         if(token) {
+            console.log(test);
             LikeService.checkLike(likeitem).then(res => {
                 if(res.data) {
-                    LikeService.updateLike(likeitem).then(res => {
-                        
+                    LikeService.selectLike(likeitem).then(res => {
+                        console.log(res.data);
+                        console.log(res.data.likeyn);
+                        console.log(res.data.pk.userId);
+                        // setTest({
+                        //     ...test,
+                        //     likeyn: 'N'
+                        // });
+                        setTest(test => ({...test, likeyn: 'N'}));
+                        setLikeitem(likeitem => ({...likeitem, likeyn: 'N'}));
+                  
+                        LikeService.updateLike(likeitem).then(res => {
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
                     })
                     .catch(err => {
                         console.log(err);

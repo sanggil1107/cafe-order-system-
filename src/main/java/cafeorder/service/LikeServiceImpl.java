@@ -21,7 +21,16 @@ public class LikeServiceImpl implements LikeService {
 	}
 	
 	@Override
-	public Boolean selectLike(String userId, int productId) throws Exception {
+	public LikeMenu SelectLike(String userId, int productId) throws Exception {
+		LikeMenuPK pk = new LikeMenuPK();
+		pk.setUserId(userId);
+		pk.setProductId(productId);
+		
+		return likeRepository.getById(pk);
+	}
+	
+	@Override
+	public Boolean CheckLike(String userId, int productId) throws Exception {
 		LikeMenuPK pk = new LikeMenuPK();
 		pk.setUserId(userId);
 		pk.setProductId(productId);
@@ -30,7 +39,7 @@ public class LikeServiceImpl implements LikeService {
 		if (op.isPresent()) {
 			return true;
 		}
-		else {			
+		else {	
 			return false;
 		}
 	}

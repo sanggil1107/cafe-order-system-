@@ -13,6 +13,16 @@ class LikeService {
         });
     };
 
+    selectLike(likeitem) {
+        return axios.get(BASE_API_URL + "/selectlike", {
+            params: {
+                userId: likeitem.userId,
+                productId: likeitem.productId
+            }
+        });
+    };
+
+
     setLike(likeitem) {
         // return axios.post(BASE_API_URL + "/like", {
 
@@ -26,7 +36,8 @@ class LikeService {
     };
 
     updateLike(likeitem) {
-        return axios.put(BASE_API_URL + "/updatelike", likeitem);
+        // return axios.put(BASE_API_URL + "/updatelike", likeitem);
+        console.log("service item: ", likeitem);
     };
 }
 

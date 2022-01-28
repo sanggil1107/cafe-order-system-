@@ -44,9 +44,16 @@ public class LikeController {
 //		likeService.InsertLike();
 //	}
 	
+
+	@RequestMapping(value = "/selectlike", method = RequestMethod.GET)
+	public LikeMenu SelectLike(@RequestParam("userId") String userId, @RequestParam("productId") int productId) throws Exception {
+		return likeService.SelectLike(userId, productId);
+	}
+	
+	
 	@RequestMapping(value = "/checklike", method = RequestMethod.GET)
 	public Boolean CheckLike(@RequestParam("userId") String userId, @RequestParam("productId") int productId) throws Exception {
-		return likeService.selectLike(userId, productId);
+		return likeService.CheckLike(userId, productId);
 	}
 	
 	@RequestMapping(value = "/like", method = RequestMethod.POST)
@@ -68,7 +75,7 @@ public class LikeController {
 	
 	@RequestMapping(value = "/updatelike", method = RequestMethod.PUT)
 	public void UpdateLike(@RequestBody Map<String, String> m) throws Exception {
-		LikeMenuPK pk = new LikeMenuPK(m.get("userId"), Integer.parseInt(m.get("productID")));
+		LikeMenuPK pk = new LikeMenuPK(m.get("userId"), Integer.parseInt(m.get("productId")));
 		LikeMenu likemenu = new LikeMenu();
 		likemenu.setPk(pk);
 		likemenu.setLikeyn(m.get("likeyn"));
