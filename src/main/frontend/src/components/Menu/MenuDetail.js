@@ -4,21 +4,19 @@ import styled from 'styled-components';
 import { Button } from '../ButtonElement';
 import '../../service_backend/LikeService'
 import withAuth from '../withAuth';
-import { Background, ModalWrapper, ModalImg, ModalContent, Modaldiv, Modalh4, Modalp, ModalFieldset, Modalviewinfo, Modalheadinfo, Modalmaininfo, Modalul1, Modalul2, Modalil, Modaldl, Modaldt, Modaldd, Modalbutton, CloseModalButton } from './MenuDetailElements';
+import { Background, ModalWrapper, ModalImg, ModalContent, Modaldiv, Modalh4, Modalp, ModalFieldset, Modalviewinfo, Modalheadinfo, Modalmaininfo, Modalul1, Modalul2, Modalil, Modaldl, Modaldt, Modaldd, Modalbutton, CloseModalButton, Modalheart } from './MenuDetailElements';
 import LikeService from '../../service_backend/LikeService';
+import Heart from '../../images/heart.png';
+import HeartEmpty from '../../images/heartempty.png';
 
 
 const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
 
     const [token1, setToken1] = useState(false);
     const tokenvalue = localStorage.getItem('token');
+    const [liketype, setLiketype] = useState(false);
     const modalRef = useRef();
     const [likeitem, setLikeitem] = useState({
-        userId: '',
-        productId: 0,
-        likeyn: 'Y'
-    });
-    const [test, setTest] = useState({
         userId: '',
         productId: 0,
         likeyn: 'Y'
@@ -52,12 +50,7 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
             userId: tokenvalue,
             productId: menu.productId
         });
-        setTest({
-            ...test,
-            userId: tokenvalue,
-            productId: menu.productId
-        });
-    }, [menu.productId]);
+    }, []);
 
     useEffect(() => {
         function handleTouchMove(event) {
@@ -75,32 +68,38 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
           window.removeEventListener('scroll', disableScroll);
           document.body.style.overflow = 'visible';
         }
-      }, []);
+    }, []);
+    
+    useEffect(() => {
+
+        if(liketype) {
+            LikeService.updateLike(likeitem).then(res => {
+                setLiketype(false);
+            })
+            .catch(err => {
+               console.log(err);
+            })
+        }
+    }, [liketype]);
 
     const like = () => {
     
-        // console.log(likeitem);
-
         if(token) {
-            console.log(test);
             LikeService.checkLike(likeitem).then(res => {
                 if(res.data) {
                     LikeService.selectLike(likeitem).then(res => {
                         console.log(res.data);
                         console.log(res.data.likeyn);
                         console.log(res.data.pk.userId);
-                        // setTest({
-                        //     ...test,
-                        //     likeyn: 'N'
-                        // });
-                        setTest(test => ({...test, likeyn: 'N'}));
-                        setLikeitem(likeitem => ({...likeitem, likeyn: 'N'}));
-                  
-                        LikeService.updateLike(likeitem).then(res => {
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        })
+                        
+                        if(res.data.likeyn === 'Y') {
+                            setLikeitem(likeitem => ({...likeitem, likeyn: 'N'}));
+                        }
+                        else {
+                            setLikeitem(likeitem => ({...likeitem, likeyn: 'Y'}));
+                        }
+                        setLiketype(true);
+                        
                     })
                     .catch(err => {
                         console.log(err);
@@ -165,7 +164,7 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
                         <ModalImg src={menu.images}/>
                         <ModalContent>
                             <Modaldiv>
-                                <Modalbutton onClick={like}>나만의 메뉴로 등록</Modalbutton>
+                                <Modalbutton onClick={like}>나만의 메뉴로 등록<Modalheart src={Heart}></Modalheart> </Modalbutton>
                                 <Modalh4>{menu.productId}</Modalh4>
                                 <Modalh4>{menu.name}</Modalh4>
                                 <Modalp>{menu.description}</Modalp>

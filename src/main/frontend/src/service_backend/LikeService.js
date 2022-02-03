@@ -36,8 +36,8 @@ class LikeService {
     };
 
     updateLike(likeitem) {
-        // return axios.put(BASE_API_URL + "/updatelike", likeitem);
         console.log("service item: ", likeitem);
+        return axios.put(BASE_API_URL + "/updatelike", likeitem);
     };
 }
 

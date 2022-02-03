@@ -144,8 +144,15 @@ export const Modaldd = styled.dd`
     margin-left: 0;
 `;
 
+export const Modalheart = styled.img`
+    width: 20px;
+    height: 20px;
+    padding-left: 8px;
+    padding-top: 1px;
+`;
+
 export const Modalbutton = styled.button`
-    width: 40%;
+    width: 45%;
     border-radius: 50px;
     background: ${({ primary }) => (primary ? '#01BF71' : '#010606')};
     white-space: nowrap;
