@@ -154,7 +154,7 @@ export const Modalheart = styled.img`
 export const Modalbutton = styled.button`
     width: 45%;
     border-radius: 50px;
-    background: ${({ primary }) => (primary ? '#01BF71' : '#010606')};
+    background: #01BF71;
     white-space: nowrap;
     padding: 8px 20px;
     color: ${({ dark }) => (dark ? '#010606' : '#fff')};
@@ -170,7 +170,7 @@ export const Modalbutton = styled.button`
 
     &:hover {
         transition: all 0.2s ease-in-out;
-        background: ${({ primary }) => (primary ? '#fff' : '#01BF71')};
+      
     }
 `;
 

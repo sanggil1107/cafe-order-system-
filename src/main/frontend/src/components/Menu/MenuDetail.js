@@ -15,11 +15,12 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
     const [token1, setToken1] = useState(false);
     const tokenvalue = localStorage.getItem('token');
     const [liketype, setLiketype] = useState(false);
+    const [insertyn, setInsertyn] = useState(false);
     const modalRef = useRef();
     const [likeitem, setLikeitem] = useState({
         userId: '',
         productId: 0,
-        likeyn: 'Y'
+        likeyn: 'N'
     });
     const animation = useSpring({
         config: {
@@ -29,14 +30,19 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
         transform: menu.modal ? 'translateY(0%)' : 'translateY(-100$)'
     });
 
+    const fetchl = () => {
+        setLikeitem(likeitem => ({
+            ...likeitem,
+            userId: tokenvalue,
+            productId: menu.productId
+        }));
+    }
     useEffect(() => {
-
-        if (token != null) {
-            setToken1(true);
+        async function fetchLike() {
+            await fetchl();
         }
-        else {
-            setToken1(false);
-        }
+        fetchLike();
+        console.log("tttt : ", likeitem);
     }, [token]);
 
     useEffect(() => {
@@ -45,12 +51,28 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
     }, []);
 
     useEffect(() => {
-        setLikeitem({
-            ...likeitem,
-            userId: tokenvalue,
-            productId: menu.productId
-        });
-    }, []);
+        console.log("like____ : ",  likeitem);
+        if(menu.modal) {
+            if(tokenvalue) {
+                LikeService.checkLike(likeitem).then(res => {
+                    if(res.data) {
+                        LikeService.selectLike(likeitem).then(res => {               
+                            setLikeitem(likeitem => ({...likeitem, likeyn: res.data.likeyn}));
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            }
+            // else {
+            //     setLikeitem(likeitem => ({...likeitem, likeyn: 'N'}));
+            // }
+        }
+    }, [menu.modal])
 
     useEffect(() => {
         function handleTouchMove(event) {
@@ -71,7 +93,6 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
     }, []);
     
     useEffect(() => {
-
         if(liketype) {
             LikeService.updateLike(likeitem).then(res => {
                 setLiketype(false);
@@ -82,15 +103,22 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
         }
     }, [liketype]);
 
+    useEffect(() => {
+        if(insertyn) {
+            LikeService.setLike(likeitem).then(res => {
+                setInsertyn(false);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
+    }, [insertyn])
+
     const like = () => {
-    
         if(token) {
             LikeService.checkLike(likeitem).then(res => {
                 if(res.data) {
                     LikeService.selectLike(likeitem).then(res => {
-                        console.log(res.data);
-                        console.log(res.data.likeyn);
-                        console.log(res.data.pk.userId);
                         
                         if(res.data.likeyn === 'Y') {
                             setLikeitem(likeitem => ({...likeitem, likeyn: 'N'}));
@@ -106,12 +134,8 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
                     })
                 }
                 else {
-                    LikeService.setLike(likeitem).then(res => {
-
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
+                    setLikeitem(likeitem => ({...likeitem, likeyn: 'Y'}))
+                    setInsertyn(true);
                 }
             })
             .catch(err => {
@@ -164,9 +188,8 @@ const MenuDetail = ({ lists, setLists, menu, modal, token }) => {
                         <ModalImg src={menu.images}/>
                         <ModalContent>
                             <Modaldiv>
-                                <Modalbutton onClick={like}>나만의 메뉴로 등록<Modalheart src={Heart}></Modalheart> </Modalbutton>
-                                <Modalh4>{menu.productId}</Modalh4>
-                                <Modalh4>{menu.name}</Modalh4>
+                                <Modalbutton onClick={like}>나만의 메뉴로 등록<Modalheart src={likeitem.likeyn === 'Y' ? Heart : HeartEmpty}></Modalheart> </Modalbutton>
+                                <Modalh4>{menu.name}({menu.productId})({likeitem.userId})</Modalh4> 
                                 <Modalp>{menu.description}</Modalp>
                                 <ModalFieldset>
                                     <Modalviewinfo>
